@@ -1,39 +1,64 @@
 import React from 'react';
-import { useApp } from './context/AppContext';
-import { Sidebar } from './components/Sidebar';
-import { Navbar } from './components/Navbar';
-import { Dashboard } from './components/Dashboard';
-import { StudentList } from './components/StudentList';
-import { TeacherList } from './components/TeacherList';
-import { CourseList } from './components/CourseList';
-import { AttendanceTracker } from './components/AttendanceTracker';
-import { GradeBook } from './components/GradeBook';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { LoginForm } from './components/auth/LoginForm';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { AppShell } from './components/layout/AppShell';
+import { AdminDashboard } from './components/dashboards/AdminDashboard';
+import { TeacherDashboard } from './components/dashboards/TeacherDashboard';
+import { StudentDashboard } from './components/dashboards/StudentDashboard';
+import { ParentDashboard } from './components/dashboards/ParentDashboard';
+import { LoadingSpinner } from './components/common/LoadingSpinner';
 
-export const App = () => {
-  const { activeTab } = useApp();
+const MainContent = () => {
+  const { user, isAuthenticated, loading } = useAuth();
 
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case 'dashboard': return <Dashboard />;
-      case 'students': return <StudentList />;
-      case 'teachers': return <TeacherList />;
-      case 'courses': return <CourseList />;
-      case 'attendance': return <AttendanceTracker />;
-      case 'grades': return <GradeBook />;
-      default: return <Dashboard />;
+  if (loading) {
+    return <LoadingSpinner fullScreen text="Initializing School Management System..." />;
+  }
+
+  if (!isAuthenticated) {
+    return <LoginForm />;
+  }
+
+  const renderRoleDashboard = () => {
+    switch (user?.role) {
+      case 'Admin':
+        return (
+          <ProtectedRoute allowedRoles={['Admin']}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        );
+      case 'Teacher':
+        return (
+          <ProtectedRoute allowedRoles={['Teacher']}>
+            <TeacherDashboard />
+          </ProtectedRoute>
+        );
+      case 'Student':
+        return (
+          <ProtectedRoute allowedRoles={['Student']}>
+            <StudentDashboard />
+          </ProtectedRoute>
+        );
+      case 'Parent':
+        return (
+          <ProtectedRoute allowedRoles={['Parent']}>
+            <ParentDashboard />
+          </ProtectedRoute>
+        );
+      default:
+        return <div>Invalid Role</div>;
     }
   };
 
+  return <AppShell>{renderRoleDashboard()}</AppShell>;
+};
+
+export const App = () => {
   return (
-    <div className="app-container">
-      <Sidebar />
-      <div className="main-wrapper">
-        <Navbar />
-        <main className="content-area">
-          {renderTabContent()}
-        </main>
-      </div>
-    </div>
+    <AuthProvider>
+      <MainContent />
+    </AuthProvider>
   );
 };
 
