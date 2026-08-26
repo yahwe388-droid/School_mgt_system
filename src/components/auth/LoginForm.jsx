@@ -69,7 +69,7 @@ export const LoginForm = () => {
           </div>
           <h2 style={{ fontSize: '1.5rem', color: 'var(--text-main)' }}>School Management System</h2>
           <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-            Phase 1: Secure Role-Based Authentication Portal
+            Secure Role-Based Authentication Portal
           </p>
         </div>
 
@@ -122,7 +122,7 @@ export const LoginForm = () => {
         {/* Demo Fast-Login Section */}
         <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border-color)' }}>
           <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', display: 'block', marginBottom: '0.75rem', textAlign: 'center' }}>
-            Quick Demo Login Accounts (Phase 1)
+            Quick Demo Login Accounts
           </span>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.625rem' }}>

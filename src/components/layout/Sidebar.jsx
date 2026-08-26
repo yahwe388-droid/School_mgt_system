@@ -81,7 +81,7 @@ export const Sidebar = () => {
         </div>
         <div>
           <h2 style={{ color: '#ffffff', fontSize: '1.05rem', lineHeight: '1.2' }}>School Management</h2>
-          <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: '500' }}>Phase 1 Portal</span>
+          <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: '500' }}>System Portal</span>
         </div>
       </div>
 
@@ -93,7 +93,7 @@ export const Sidebar = () => {
 
         {navItems.map((item, index) => {
           const Icon = item.icon;
-          const isActive = index === 0; // Default active for Phase 1 base shell
+          const isActive = index === 0; // Default active for base shell
           return (
             <div
               key={item.label}

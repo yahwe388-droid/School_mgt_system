@@ -44,7 +44,7 @@ export const TeacherDashboard = () => {
             <div className="glass-card" style={{ padding: '1.5rem', background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(99, 102, 241, 0.1))', borderLeft: '4px solid var(--accent-cyan)' }}>
               <h2 style={{ fontSize: '1.25rem' }}>Welcome, {user?.name} (Faculty Portal)</h2>
               <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-                Department: {user?.department || 'Computer Science'} • Phase 4 Operational Communication Active
+                Department: {user?.department || 'Computer Science'} • Operational Communication Active
               </p>
             </div>
 

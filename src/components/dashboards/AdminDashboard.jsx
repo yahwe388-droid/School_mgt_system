@@ -143,7 +143,7 @@ export const AdminDashboard = () => {
 
             {/* Operational Communication & Analytics Shortcuts */}
             <div className="glass-card" style={{ padding: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Phase 4 Operational Visibility Modules</h3>
+              <h3 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Operational Visibility Modules</h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                 <button className="btn btn-secondary" onClick={() => setActiveTab('notices')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
                   <Bell size={20} color="var(--primary)" /> Broadcast Notices & Announcements
