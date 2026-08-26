@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { GraduationCap, Award, BookOpen, CalendarCheck, Calendar, Activity } from 'lucide-react';
+import { GraduationCap, Award, BookOpen, CalendarCheck, Calendar, Activity, Bell, Printer } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { TimetableManager } from '../academic/TimetableManager';
 import { AssignmentManager } from '../academic/AssignmentManager';
 import { ExamManager } from '../academic/ExamManager';
 import { ResultManager } from '../academic/ResultManager';
 import { AttendanceManager } from '../academic/AttendanceManager';
+import { AnnouncementManager } from '../communication/AnnouncementManager';
+import { NotificationCenter } from '../communication/NotificationCenter';
+import { ReportGenerator } from '../communication/ReportGenerator';
 
 export const StudentDashboard = () => {
   const { user } = useAuth();
@@ -13,15 +16,21 @@ export const StudentDashboard = () => {
 
   const tabs = [
     { id: 'overview', label: 'Academic Overview', icon: Activity },
+    { id: 'notices', label: 'School Notices', icon: Bell },
+    { id: 'notifications', label: 'Notifications', icon: Bell },
+    { id: 'report-card', label: 'Print Progress Report', icon: Printer },
     { id: 'timetable', label: 'My Timetable', icon: Calendar },
     { id: 'assignments', label: 'My Homework', icon: BookOpen },
     { id: 'exams', label: 'Exams Schedule', icon: Award },
-    { id: 'results', label: 'My Results & Grades', icon: Award },
+    { id: 'results', label: 'My Results', icon: Award },
     { id: 'attendance', label: 'My Attendance', icon: CalendarCheck },
   ];
 
   const renderContent = () => {
     switch (activeTab) {
+      case 'notices': return <AnnouncementManager />;
+      case 'notifications': return <NotificationCenter />;
+      case 'report-card': return <ReportGenerator />;
       case 'timetable': return <TimetableManager />;
       case 'assignments': return <AssignmentManager />;
       case 'exams': return <ExamManager />;
@@ -41,16 +50,16 @@ export const StudentDashboard = () => {
 
             {/* Quick Portal Navigation Cards */}
             <div className="glass-card" style={{ padding: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Student Academic Modules</h3>
+              <h3 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Student Academic & Communication Modules</h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
+                <button className="btn btn-secondary" onClick={() => setActiveTab('notices')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
+                  <Bell size={20} color="var(--primary)" /> View School Notices
+                </button>
+                <button className="btn btn-secondary" onClick={() => setActiveTab('report-card')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
+                  <Printer size={20} color="var(--accent-emerald)" /> Print Official Report Card
+                </button>
                 <button className="btn btn-secondary" onClick={() => setActiveTab('timetable')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <Calendar size={20} color="var(--primary)" /> View Class Schedule
-                </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('assignments')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <BookOpen size={20} color="var(--accent-cyan)" /> View Pending Homework
-                </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('results')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <Award size={20} color="var(--accent-emerald)" /> View Exam Report Card
+                  <Calendar size={20} color="var(--accent-cyan)" /> View Class Schedule
                 </button>
               </div>
             </div>
