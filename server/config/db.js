@@ -143,7 +143,6 @@ export const initialParents = [
   }
 ];
 
-// Phase 3 Academic Entities Seed Data
 export const initialTimetables = [
   { id: "TT-001", classId: "CLS-12", subjectId: "SUB-101", subjectCode: "CS-401", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", day: "Monday", period: 1, timeSlot: "09:00 - 10:00 AM", room: "Lab 301" },
   { id: "TT-002", classId: "CLS-12", subjectId: "SUB-102", subjectCode: "MATH-301", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", day: "Monday", period: 2, timeSlot: "10:15 - 11:15 AM", room: "Room 301" },
@@ -240,6 +239,58 @@ export const initialResults = [
   }
 ];
 
+// Phase 4 Communication Seed Data
+export const initialAnnouncements = [
+  {
+    id: "ANC-001",
+    title: "Welcome to Fall Term 2026 Academic Session",
+    content: "We are excited to welcome all students, faculty, and parents to the new academic year. Please review class schedules and update contact details.",
+    targetRole: "All",
+    isPinned: true,
+    publishedAt: "2026-08-26T08:00:00.000Z",
+    author: "Administration"
+  },
+  {
+    id: "ANC-002",
+    title: "Annual Fall Parent-Teacher Conference",
+    content: "The annual Parent-Teacher Conference is scheduled for September 25th. Appointment slots can be selected via the Parent Portal.",
+    targetRole: "Parent",
+    isPinned: false,
+    publishedAt: "2026-08-25T10:00:00.000Z",
+    author: "Principal's Office"
+  }
+];
+
+export const initialNotifications = [
+  {
+    id: "NTF-001",
+    userId: "USR-003", // Alex Morgan
+    title: "New Assignment Published",
+    message: "Dr. Robert Vance posted Binary Search Tree Implementation (CS-401). Due: Sep 5.",
+    type: "assignment",
+    isRead: false,
+    timestamp: "2026-08-26T09:00:00.000Z"
+  },
+  {
+    id: "NTF-002",
+    userId: "USR-003",
+    title: "Exam Score Available",
+    message: "Your result for CS-401 Midterm Assessment has been posted: 94/100 (Grade A).",
+    type: "result",
+    isRead: true,
+    timestamp: "2026-08-25T16:00:00.000Z"
+  },
+  {
+    id: "NTF-003",
+    userId: "USR-004", // Parent David Morgan
+    title: "Student Attendance Alert",
+    message: "Alex Morgan was recorded Present in class on 2026-08-26.",
+    type: "attendance",
+    isRead: false,
+    timestamp: "2026-08-26T08:30:00.000Z"
+  }
+];
+
 class DatabaseStore {
   constructor() {
     this.users = [...initialUsers];
@@ -254,13 +305,16 @@ class DatabaseStore {
     this.teachers = [...initialTeachers];
     this.parents = [...initialParents];
 
-    // Phase 3 Store Collections
     this.timetables = [...initialTimetables];
     this.attendanceRecords = [...initialAttendanceRecords];
     this.assignments = [...initialAssignments];
     this.submissions = [...initialSubmissions];
     this.exams = [...initialExams];
     this.results = [...initialResults];
+
+    // Phase 4 Collections
+    this.announcements = [...initialAnnouncements];
+    this.notifications = [...initialNotifications];
   }
 
   // Users
@@ -371,7 +425,7 @@ class DatabaseStore {
     return true;
   }
 
-  // Phase 3 Methods: Timetable
+  // Timetables
   getTimetables() { return this.timetables; }
   addTimetable(slot) {
     const newSlot = { id: `TT-${Date.now()}`, ...slot };
@@ -438,6 +492,25 @@ class DatabaseStore {
       this.results.push(newRes);
       return newRes;
     }
+  }
+
+  // Phase 4 Methods: Announcements
+  getAnnouncements() { return this.announcements; }
+  addAnnouncement(data) {
+    const newAnc = { id: `ANC-${Date.now()}`, publishedAt: new Date().toISOString(), ...data };
+    this.announcements.unshift(newAnc);
+    return newAnc;
+  }
+
+  // Notifications
+  getNotifications(userId) {
+    if (!userId) return this.notifications;
+    return this.notifications.filter(n => n.userId === userId);
+  }
+
+  markNotificationAsRead(id) {
+    this.notifications = this.notifications.map(n => n.id === id ? { ...n, isRead: true } : n);
+    return true;
   }
 }
 
