@@ -315,6 +315,20 @@ class DatabaseStore {
     // Phase 4 Collections
     this.announcements = [...initialAnnouncements];
     this.notifications = [...initialNotifications];
+
+    // Phase 5 Audit Store
+    this.auditLogs = [];
+  }
+
+  // Audit Log Methods
+  logAdminAction(entry) {
+    const log = { id: `LOG-${Date.now()}`, ...entry };
+    this.auditLogs.unshift(log);
+    return log;
+  }
+
+  getAuditLogs() {
+    return this.auditLogs;
   }
 
   // Users
