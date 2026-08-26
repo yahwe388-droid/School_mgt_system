@@ -9,7 +9,10 @@ import {
   Activity,
   Calendar,
   CalendarCheck,
-  Award
+  Award,
+  Bell,
+  Printer,
+  BarChart3
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { api } from '../../services/api';
@@ -23,6 +26,10 @@ import { AttendanceManager } from '../academic/AttendanceManager';
 import { AssignmentManager } from '../academic/AssignmentManager';
 import { ExamManager } from '../academic/ExamManager';
 import { ResultManager } from '../academic/ResultManager';
+import { AnnouncementManager } from '../communication/AnnouncementManager';
+import { NotificationCenter } from '../communication/NotificationCenter';
+import { ReportGenerator } from '../communication/ReportGenerator';
+import { AnalyticsDashboard } from '../communication/AnalyticsDashboard';
 
 export const AdminDashboard = () => {
   const { user, token } = useAuth();
@@ -50,6 +57,10 @@ export const AdminDashboard = () => {
 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: Activity },
+    { id: 'notices', label: 'Notices', icon: Bell },
+    { id: 'notifications', label: 'Notifications', icon: Bell },
+    { id: 'reports', label: 'Reports', icon: Printer },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'school', label: 'School Setup', icon: Building },
     { id: 'academic', label: 'Classes & Subjects', icon: Layers },
     { id: 'students', label: 'Students', icon: GraduationCap },
@@ -64,6 +75,10 @@ export const AdminDashboard = () => {
 
   const renderTabContent = () => {
     switch (activeTab) {
+      case 'notices': return <AnnouncementManager />;
+      case 'notifications': return <NotificationCenter />;
+      case 'reports': return <ReportGenerator />;
+      case 'analytics': return <AnalyticsDashboard />;
       case 'school': return <SchoolProfileManager />;
       case 'academic': return <AcademicStructureManager />;
       case 'students': return <StudentRecordsManager />;
@@ -126,24 +141,21 @@ export const AdminDashboard = () => {
               </div>
             </div>
 
-            {/* Academic Operations Grid Shortcuts */}
+            {/* Operational Communication & Analytics Shortcuts */}
             <div className="glass-card" style={{ padding: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Phase 3 Academic Operations Modules</h3>
+              <h3 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Phase 4 Operational Visibility Modules</h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('timetable')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <Calendar size={20} color="var(--primary)" /> Timetable & Conflict Engine
+                <button className="btn btn-secondary" onClick={() => setActiveTab('notices')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
+                  <Bell size={20} color="var(--primary)" /> Broadcast Notices & Announcements
                 </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('attendance')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <CalendarCheck size={20} color="var(--accent-emerald)" /> Daily Attendance Register
+                <button className="btn btn-secondary" onClick={() => setActiveTab('notifications')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
+                  <Bell size={20} color="var(--accent-cyan)" /> Notification Center
                 </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('assignments')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <BookOpen size={20} color="var(--accent-cyan)" /> Homework & Assignments
+                <button className="btn btn-secondary" onClick={() => setActiveTab('reports')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
+                  <Printer size={20} color="var(--accent-emerald)" /> Printable Student Progress Reports
                 </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('exams')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <Award size={20} color="var(--accent-amber)" /> Exams & Assessments
-                </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('results')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <Award size={20} color="var(--accent-violet)" /> Student Marks & Report Cards
+                <button className="btn btn-secondary" onClick={() => setActiveTab('analytics')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
+                  <BarChart3 size={20} color="var(--accent-amber)" /> Visual Analytics & Insights
                 </button>
               </div>
             </div>
