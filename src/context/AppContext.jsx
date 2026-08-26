@@ -5,27 +5,27 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   // Theme state
-  const [theme, setTheme] = useState(() => localStorage.getItem('academiX_theme') || 'light');
+  const [theme, setTheme] = useState(() => localStorage.getItem('schoolMgt_theme') || 'light');
   const [activeTab, setActiveTab] = useState('dashboard');
 
   // Core Data States with localStorage persistence
   const [students, setStudents] = useState(() => {
-    const saved = localStorage.getItem('academiX_students');
+    const saved = localStorage.getItem('schoolMgt_students');
     return saved ? JSON.parse(saved) : initialStudents;
   });
 
   const [teachers, setTeachers] = useState(() => {
-    const saved = localStorage.getItem('academiX_teachers');
+    const saved = localStorage.getItem('schoolMgt_teachers');
     return saved ? JSON.parse(saved) : initialTeachers;
   });
 
   const [courses, setCourses] = useState(() => {
-    const saved = localStorage.getItem('academiX_courses');
+    const saved = localStorage.getItem('schoolMgt_courses');
     return saved ? JSON.parse(saved) : initialCourses;
   });
 
   const [attendance, setAttendance] = useState(() => {
-    const saved = localStorage.getItem('academiX_attendance');
+    const saved = localStorage.getItem('schoolMgt_attendance');
     return saved ? JSON.parse(saved) : initialAttendance;
   });
 
@@ -34,23 +34,23 @@ export const AppProvider = ({ children }) => {
   // Sync state changes to localStorage
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('academiX_theme', theme);
+    localStorage.setItem('schoolMgt_theme', theme);
   }, [theme]);
 
   useEffect(() => {
-    localStorage.setItem('academiX_students', JSON.stringify(students));
+    localStorage.setItem('schoolMgt_students', JSON.stringify(students));
   }, [students]);
 
   useEffect(() => {
-    localStorage.setItem('academiX_teachers', JSON.stringify(teachers));
+    localStorage.setItem('schoolMgt_teachers', JSON.stringify(teachers));
   }, [teachers]);
 
   useEffect(() => {
-    localStorage.setItem('academiX_courses', JSON.stringify(courses));
+    localStorage.setItem('schoolMgt_courses', JSON.stringify(courses));
   }, [courses]);
 
   useEffect(() => {
-    localStorage.setItem('academiX_attendance', JSON.stringify(attendance));
+    localStorage.setItem('schoolMgt_attendance', JSON.stringify(attendance));
   }, [attendance]);
 
   const toggleTheme = () => {

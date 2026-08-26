@@ -32,7 +32,7 @@ Designed for educational institutions to seamlessly manage students, faculty, co
 ## 📁 Folder Structure
 
 ```text
-Stud-mgt-system/
+School_mgt_system/
 ├── public/                 # Static assets & favicon
 ├── src/
 │   ├── assets/             # Images and visual media
@@ -73,8 +73,8 @@ Ensure you have [Node.js](https://nodejs.org/) (v18.0 or later) installed on you
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/Stud-mgt-system.git
-   cd Stud-mgt-system
+   git clone https://github.com/yahwe388-droid/School_mgt_system.git
+   cd School_mgt_system
    ```
 
 2. **Install Dependencies**
