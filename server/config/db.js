@@ -143,6 +143,103 @@ export const initialParents = [
   }
 ];
 
+// Phase 3 Academic Entities Seed Data
+export const initialTimetables = [
+  { id: "TT-001", classId: "CLS-12", subjectId: "SUB-101", subjectCode: "CS-401", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", day: "Monday", period: 1, timeSlot: "09:00 - 10:00 AM", room: "Lab 301" },
+  { id: "TT-002", classId: "CLS-12", subjectId: "SUB-102", subjectCode: "MATH-301", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", day: "Monday", period: 2, timeSlot: "10:15 - 11:15 AM", room: "Room 301" },
+  { id: "TT-003", classId: "CLS-12", subjectId: "SUB-103", subjectCode: "ENG-201", teacherId: "", teacherName: "Unassigned", day: "Tuesday", period: 1, timeSlot: "09:00 - 10:00 AM", room: "Room 302" },
+  { id: "TT-004", classId: "CLS-12", subjectId: "SUB-104", subjectCode: "PHY-202", teacherId: "", teacherName: "Unassigned", day: "Wednesday", period: 3, timeSlot: "11:30 - 12:30 PM", room: "Physics Lab" }
+];
+
+export const initialAttendanceRecords = [
+  { id: "ATT-001", date: "2026-08-26", studentId: "STU-1001", studentName: "Alex Morgan", classId: "CLS-12", status: "Present", remarks: "On time" },
+  { id: "ATT-002", date: "2026-08-26", studentId: "STU-1002", studentName: "Sophia Chen", classId: "CLS-11", status: "Present", remarks: "On time" },
+  { id: "ATT-003", date: "2026-08-25", studentId: "STU-1001", studentName: "Alex Morgan", classId: "CLS-12", status: "Late", remarks: "Bus delay" },
+  { id: "ATT-004", date: "2026-08-24", studentId: "STU-1001", studentName: "Alex Morgan", classId: "CLS-12", status: "Present", remarks: "On time" }
+];
+
+export const initialAssignments = [
+  {
+    id: "ASN-001",
+    title: "Binary Search Tree Implementation",
+    subjectId: "SUB-101",
+    subjectCode: "CS-401",
+    classId: "CLS-12",
+    teacherId: "TCH-201",
+    dueDate: "2026-09-05",
+    totalPoints: 100,
+    instructions: "Implement a balanced AVL tree with insert, delete, and traversal methods in C++ or Python."
+  },
+  {
+    id: "ASN-002",
+    title: "Matrix Linear Transformations Worksheet",
+    subjectId: "SUB-102",
+    subjectCode: "MATH-301",
+    classId: "CLS-12",
+    teacherId: "TCH-201",
+    dueDate: "2026-09-08",
+    totalPoints: 50,
+    instructions: "Complete problems 1 through 15 on page 142 regarding eigenvalues and eigenvectors."
+  }
+];
+
+export const initialSubmissions = [
+  {
+    id: "SUB-801",
+    assignmentId: "ASN-001",
+    studentId: "STU-1001",
+    studentName: "Alex Morgan",
+    submittedAt: "2026-09-04T14:30:00.000Z",
+    status: "Reviewed",
+    content: "github.com/alexmorgan/avl-tree-implementation",
+    score: 95,
+    feedback: "Excellent code structure and clean memory management."
+  }
+];
+
+export const initialExams = [
+  {
+    id: "EXM-001",
+    title: "Midterm Assessment - Data Structures",
+    subjectId: "SUB-101",
+    subjectCode: "CS-401",
+    classId: "CLS-12",
+    examDate: "2026-10-15",
+    timeSlot: "09:00 - 11:00 AM",
+    durationMinutes: 120,
+    totalMarks: 100,
+    type: "Midterm"
+  },
+  {
+    id: "EXM-002",
+    title: "Linear Algebra Quiz 1",
+    subjectId: "SUB-102",
+    subjectCode: "MATH-301",
+    classId: "CLS-12",
+    examDate: "2026-09-20",
+    timeSlot: "10:00 - 10:45 AM",
+    durationMinutes: 45,
+    totalMarks: 50,
+    type: "Quiz"
+  }
+];
+
+export const initialResults = [
+  {
+    id: "RES-901",
+    examId: "EXM-001",
+    studentId: "STU-1001",
+    studentName: "Alex Morgan",
+    subjectCode: "CS-401",
+    marksObtained: 94,
+    totalMarks: 100,
+    percentage: 94,
+    letterGrade: "A",
+    gpa: 4.0,
+    remarks: "Outstanding Performance"
+  }
+];
+
 class DatabaseStore {
   constructor() {
     this.users = [...initialUsers];
@@ -156,6 +253,14 @@ class DatabaseStore {
     this.students = [...initialStudents];
     this.teachers = [...initialTeachers];
     this.parents = [...initialParents];
+
+    // Phase 3 Store Collections
+    this.timetables = [...initialTimetables];
+    this.attendanceRecords = [...initialAttendanceRecords];
+    this.assignments = [...initialAssignments];
+    this.submissions = [...initialSubmissions];
+    this.exams = [...initialExams];
+    this.results = [...initialResults];
   }
 
   // Users
@@ -264,6 +369,75 @@ class DatabaseStore {
   deleteParent(id) {
     this.parents = this.parents.filter(p => p.id !== id);
     return true;
+  }
+
+  // Phase 3 Methods: Timetable
+  getTimetables() { return this.timetables; }
+  addTimetable(slot) {
+    const newSlot = { id: `TT-${Date.now()}`, ...slot };
+    this.timetables.push(newSlot);
+    return newSlot;
+  }
+  deleteTimetable(id) {
+    this.timetables = this.timetables.filter(t => t.id !== id);
+    return true;
+  }
+
+  // Attendance
+  getAttendance() { return this.attendanceRecords; }
+  recordAttendance(record) {
+    const existingIndex = this.attendanceRecords.findIndex(
+      r => r.date === record.date && r.studentId === record.studentId
+    );
+
+    if (existingIndex >= 0) {
+      this.attendanceRecords[existingIndex] = { ...this.attendanceRecords[existingIndex], ...record };
+      return this.attendanceRecords[existingIndex];
+    } else {
+      const newRec = { id: `ATT-${Date.now()}`, ...record };
+      this.attendanceRecords.push(newRec);
+      return newRec;
+    }
+  }
+
+  // Assignments & Submissions
+  getAssignments() { return this.assignments; }
+  addAssignment(data) {
+    const newAsn = { id: `ASN-${Date.now()}`, ...data };
+    this.assignments.push(newAsn);
+    return newAsn;
+  }
+
+  getSubmissions() { return this.submissions; }
+  submitHomework(data) {
+    const newSub = { id: `SUB-${Date.now()}`, submittedAt: new Date().toISOString(), status: 'Submitted', ...data };
+    this.submissions.push(newSub);
+    return newSub;
+  }
+  reviewSubmission(id, score, feedback) {
+    this.submissions = this.submissions.map(s => s.id === id ? { ...s, score, feedback, status: 'Reviewed' } : s);
+    return this.submissions.find(s => s.id === id);
+  }
+
+  // Exams & Results
+  getExams() { return this.exams; }
+  addExam(data) {
+    const newExm = { id: `EXM-${Date.now()}`, ...data };
+    this.exams.push(newExm);
+    return newExm;
+  }
+
+  getResults() { return this.results; }
+  saveResult(data) {
+    const existingIndex = this.results.findIndex(r => r.examId === data.examId && r.studentId === data.studentId);
+    if (existingIndex >= 0) {
+      this.results[existingIndex] = { ...this.results[existingIndex], ...data };
+      return this.results[existingIndex];
+    } else {
+      const newRes = { id: `RES-${Date.now()}`, ...data };
+      this.results.push(newRes);
+      return newRes;
+    }
   }
 }
 
