@@ -8,6 +8,7 @@ import { TeacherDashboard } from './components/dashboards/TeacherDashboard';
 import { StudentDashboard } from './components/dashboards/StudentDashboard';
 import { ParentDashboard } from './components/dashboards/ParentDashboard';
 import { LoadingSpinner } from './components/common/LoadingSpinner';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 const MainContent = () => {
   const { user, isAuthenticated, loading } = useAuth();
@@ -56,9 +57,11 @@ const MainContent = () => {
 
 export const App = () => {
   return (
-    <AuthProvider>
-      <MainContent />
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <MainContent />
+      </AuthProvider>
+    </ErrorBoundary>
   );
 };
 
