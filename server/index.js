@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import schoolRoutes from './routes/schoolRoutes.js';
+import recordRoutes from './routes/recordRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,6 +19,8 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/school', schoolRoutes);
+app.use('/api/records', recordRoutes);
 
 // Root health check
 app.get('/api/health', (req, res) => {
