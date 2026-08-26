@@ -5,6 +5,7 @@ import userRoutes from './routes/userRoutes.js';
 import schoolRoutes from './routes/schoolRoutes.js';
 import recordRoutes from './routes/recordRoutes.js';
 import academicRoutes from './routes/academicRoutes.js';
+import communicationRoutes from './routes/communicationRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +24,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/school', schoolRoutes);
 app.use('/api/records', recordRoutes);
 app.use('/api/academic', academicRoutes);
+app.use('/api/communication', communicationRoutes);
 
 // Root health check
 app.get('/api/health', (req, res) => {
