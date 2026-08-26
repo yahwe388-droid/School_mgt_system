@@ -1,6 +1,5 @@
 import bcrypt from 'bcryptjs';
 
-// Pre-hashed passwords for quick initial setup (password: role + '123' e.g. admin123)
 const salt = bcrypt.genSaltSync(10);
 
 export const initialUsers = [
@@ -41,9 +40,106 @@ export const initialUsers = [
     email: "parent@school.com",
     passwordHash: bcrypt.hashSync("parent123", salt),
     role: "Parent",
-    children: ["USR-003"], // Linked student: Alex Morgan
+    children: ["STU-1001"],
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250",
     createdAt: "2026-01-04T00:00:00.000Z"
+  }
+];
+
+export const initialSchoolProfile = {
+  name: "Greenwood International Academy",
+  motto: "Excellence in Knowledge & Character",
+  address: "100 Education Way, Innovation City",
+  phone: "+1 (555) 234-5678",
+  email: "info@greenwood.edu",
+  website: "https://greenwood.edu",
+  activeAcademicYear: "AY 2025-2026",
+  activeTerm: "Fall Term 2026"
+};
+
+export const initialAcademicYears = [
+  { id: "AY-2025", title: "AY 2025-2026", startDate: "2025-09-01", endDate: "2026-06-30", status: "Active" },
+  { id: "AY-2026", title: "AY 2026-2027", startDate: "2026-09-01", endDate: "2027-06-30", status: "Upcoming" }
+];
+
+export const initialTerms = [
+  { id: "TRM-01", academicYearId: "AY-2025", title: "Fall Term 2026", startDate: "2026-09-01", endDate: "2026-12-20", status: "Active" },
+  { id: "TRM-02", academicYearId: "AY-2025", title: "Spring Term 2027", startDate: "2027-01-10", endDate: "2027-05-30", status: "Upcoming" }
+];
+
+export const initialClasses = [
+  { id: "CLS-09", title: "Grade 9 (Freshman)", code: "G9", level: 9 },
+  { id: "CLS-10", title: "Grade 10 (Sophomore)", code: "G10", level: 10 },
+  { id: "CLS-11", title: "Grade 11 (Junior)", code: "G11", level: 11 },
+  { id: "CLS-12", title: "Grade 12 (Senior)", code: "G12", level: 12 }
+];
+
+export const initialSections = [
+  { id: "SEC-A", classId: "CLS-12", title: "Section A", room: "Room 301", capacity: 35 },
+  { id: "SEC-B", classId: "CLS-12", title: "Section B", room: "Room 302", capacity: 35 },
+  { id: "SEC-C", classId: "CLS-11", title: "Section A", room: "Room 201", capacity: 35 }
+];
+
+export const initialSubjects = [
+  { id: "SUB-101", code: "CS-401", title: "Advanced Data Structures & Algorithms", department: "Computer Science", credits: 4, teacherId: "TCH-201" },
+  { id: "SUB-102", code: "MATH-301", title: "Calculus & Linear Algebra", department: "Mathematics", credits: 3, teacherId: "TCH-201" },
+  { id: "SUB-103", code: "ENG-201", title: "World Literature & Composition", department: "English", credits: 3, teacherId: "" },
+  { id: "SUB-104", code: "PHY-202", title: "General Physics & Mechanics", department: "Science", credits: 4, teacherId: "" }
+];
+
+export const initialStudents = [
+  {
+    id: "STU-1001",
+    userId: "USR-003",
+    admissionNo: "ADM-2026-001",
+    name: "Alex Morgan",
+    email: "student@school.com",
+    classId: "CLS-12",
+    sectionId: "SEC-A",
+    parentId: "PRN-301",
+    grade: "Senior",
+    gpa: 3.85,
+    status: "Active"
+  },
+  {
+    id: "STU-1002",
+    userId: "",
+    admissionNo: "ADM-2026-002",
+    name: "Sophia Chen",
+    email: "sophia.chen@school.com",
+    classId: "CLS-11",
+    sectionId: "SEC-C",
+    parentId: "PRN-301",
+    grade: "Junior",
+    gpa: 3.92,
+    status: "Active"
+  }
+];
+
+export const initialTeachers = [
+  {
+    id: "TCH-201",
+    userId: "USR-002",
+    employeeId: "EMP-2026-101",
+    name: "Dr. Robert Vance",
+    email: "teacher@school.com",
+    department: "Computer Science",
+    qualification: "Ph.D. in Computer Science",
+    phone: "+1 (555) 987-6543",
+    status: "Active"
+  }
+];
+
+export const initialParents = [
+  {
+    id: "PRN-301",
+    userId: "USR-004",
+    name: "David Morgan",
+    email: "parent@school.com",
+    phone: "+1 (555) 456-7890",
+    occupation: "Software Architect",
+    address: "742 Evergreen Terrace",
+    studentIds: ["STU-1001", "STU-1002"]
   }
 ];
 
@@ -51,28 +147,123 @@ class DatabaseStore {
   constructor() {
     this.users = [...initialUsers];
     this.roles = ["Admin", "Teacher", "Student", "Parent"];
+    this.schoolProfile = { ...initialSchoolProfile };
+    this.academicYears = [...initialAcademicYears];
+    this.terms = [...initialTerms];
+    this.classes = [...initialClasses];
+    this.sections = [...initialSections];
+    this.subjects = [...initialSubjects];
+    this.students = [...initialStudents];
+    this.teachers = [...initialTeachers];
+    this.parents = [...initialParents];
   }
 
-  getUsers() {
-    return this.users;
+  // Users
+  getUsers() { return this.users; }
+  findUserByEmail(email) { return this.users.find(u => u.email.toLowerCase() === email.toLowerCase()); }
+  findUserById(id) { return this.users.find(u => u.id === id); }
+
+  // School Profile
+  getSchoolProfile() { return this.schoolProfile; }
+  updateSchoolProfile(updated) {
+    this.schoolProfile = { ...this.schoolProfile, ...updated };
+    return this.schoolProfile;
   }
 
-  findUserByEmail(email) {
-    return this.users.find(u => u.email.toLowerCase() === email.toLowerCase());
+  // Academic Years
+  getAcademicYears() { return this.academicYears; }
+  addAcademicYear(data) {
+    const newYear = { id: `AY-${Date.now()}`, ...data };
+    this.academicYears.push(newYear);
+    return newYear;
   }
 
-  findUserById(id) {
-    return this.users.find(u => u.id === id);
+  // Classes
+  getClasses() { return this.classes; }
+  addClass(data) {
+    const newClass = { id: `CLS-${Date.now()}`, ...data };
+    this.classes.push(newClass);
+    return newClass;
+  }
+  updateClass(id, data) {
+    this.classes = this.classes.map(c => c.id === id ? { ...c, ...data } : c);
+    return this.classes.find(c => c.id === id);
+  }
+  deleteClass(id) {
+    this.classes = this.classes.filter(c => c.id !== id);
+    return true;
   }
 
-  addUser(userData) {
-    const newUser = {
-      id: `USR-00${this.users.length + 1}`,
-      createdAt: new Date().toISOString(),
-      ...userData
-    };
-    this.users.push(newUser);
-    return newUser;
+  // Sections
+  getSections() { return this.sections; }
+  addSection(data) {
+    const newSec = { id: `SEC-${Date.now()}`, ...data };
+    this.sections.push(newSec);
+    return newSec;
+  }
+
+  // Subjects
+  getSubjects() { return this.subjects; }
+  addSubject(data) {
+    const newSub = { id: `SUB-${Date.now()}`, ...data };
+    this.subjects.push(newSub);
+    return newSub;
+  }
+  updateSubject(id, data) {
+    this.subjects = this.subjects.map(s => s.id === id ? { ...s, ...data } : s);
+    return this.subjects.find(s => s.id === id);
+  }
+  deleteSubject(id) {
+    this.subjects = this.subjects.filter(s => s.id !== id);
+    return true;
+  }
+
+  // Students Record CRUD
+  getStudents() { return this.students; }
+  addStudent(data) {
+    const newStu = { id: `STU-${1000 + this.students.length + 1}`, ...data };
+    this.students.push(newStu);
+    return newStu;
+  }
+  updateStudent(id, data) {
+    this.students = this.students.map(s => s.id === id ? { ...s, ...data } : s);
+    return this.students.find(s => s.id === id);
+  }
+  deleteStudent(id) {
+    this.students = this.students.filter(s => s.id !== id);
+    return true;
+  }
+
+  // Teachers Record CRUD
+  getTeachers() { return this.teachers; }
+  addTeacher(data) {
+    const newTch = { id: `TCH-${200 + this.teachers.length + 1}`, ...data };
+    this.teachers.push(newTch);
+    return newTch;
+  }
+  updateTeacher(id, data) {
+    this.teachers = this.teachers.map(t => t.id === id ? { ...t, ...data } : t);
+    return this.teachers.find(t => t.id === id);
+  }
+  deleteTeacher(id) {
+    this.teachers = this.teachers.filter(t => t.id !== id);
+    return true;
+  }
+
+  // Parents Record CRUD
+  getParents() { return this.parents; }
+  addParent(data) {
+    const newPrn = { id: `PRN-${300 + this.parents.length + 1}`, ...data };
+    this.parents.push(newPrn);
+    return newPrn;
+  }
+  updateParent(id, data) {
+    this.parents = this.parents.map(p => p.id === id ? { ...p, ...data } : p);
+    return this.parents.find(p => p.id === id);
+  }
+  deleteParent(id) {
+    this.parents = this.parents.filter(p => p.id !== id);
+    return true;
   }
 }
 
