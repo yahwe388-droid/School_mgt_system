@@ -1,97 +1,93 @@
-# 🏫 School Management System
+# 🏫 School Management System (Complete 5-Phase Production Release)
 
-A modern, high-performance, responsive **School Management System** built with **React 19**, **Vite**, **Lucide Icons**, and custom modern CSS variables (Glassmorphism & Dark Mode). 
+A modern, full-stack, production-ready **School Management System** platform built with **React 19**, **Vite**, **Express**, **JWT Authentication**, **RBAC Security**, **Lucide Icons**, and custom CSS HSL Design Tokens (Glassmorphism & Dark Mode).
 
-Designed for educational institutions to seamlessly manage students, faculty, course catalogs, daily attendance, gradebooks, and real-time analytical insights.
-
----
-
-## ✨ Features
-
-- 📊 **Executive Dashboard**: Real-time KPIs for total student count, faculty size, average GPA, and attendance rates with recent activity logs.
-- 👨‍🎓 **Student Directory**: Complete CRUD (Create, Read, Update, Delete) interface with search filtering, grade level tags, status badges, and details modal.
-- 👩‍🏫 **Faculty Management**: Track teachers, department assignments, email contact info, and subject allocations.
-- 📚 **Course Catalog**: Manage subjects, credit hours, department categorization, and student enrollment capacity.
-- 📅 **Attendance Tracker**: Interactive daily attendance register with status controls (Present, Absent, Late) and instant attendance percentages.
-- 📝 **Gradebook & GPA**: Grade entry management with automated GPA calculation and student academic standing indicators.
-- 🌗 **Dark / Light Theme**: Built-in dynamic theme switcher using modern CSS HSL design tokens.
-- 💾 **Local Storage Persistence**: Automatic persistence of edits, additions, and updates directly in the browser.
+Designed for educational institutions to manage administrative setup, student/teacher/parent records, class timetables with conflict detection, daily attendance, assignments, exam gradebooks, printable report cards, role-targeted announcements, and visual analytics.
 
 ---
 
-## 🛠️ Tech Stack
+## 🌟 5-Phase Architecture Overview
 
-- **Frontend Framework**: [React 19](https://react.dev/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Typography**: Google Fonts (*Outfit* & *Inter*)
-- **Styling**: Vanilla CSS (Custom Design System, Glassmorphism, Responsive Grid)
+- 🔒 **Phase 1: Foundation & RBAC**: JWT authentication, bcrypt password hashing, role middleware, protected route guards, base navigation shell, and demo account switcher for **Admin**, **Teacher**, **Student**, and **Parent**.
+- 🏫 **Phase 2: Core School Records Layer**: School profile setup, academic year management, class levels & sections, subject mapping, and CRUD record managers for Students, Teachers, and Parents.
+- 📅 **Phase 3: Academic Management Layer**: Timetables with conflict detection engine, daily attendance register, homework assignments & submissions, exam/quiz scheduler, mark entry board, and report card data.
+- 📢 **Phase 4: Communication, Reporting & Operational Visibility**: Role-targeted announcement noticeboard, in-app notification center, printable student progress report cards, and visual institutional analytics.
+- 🚀 **Phase 5: Final Production Readiness**: Rate-limiting, security headers (XSS/HSTS/Frame-Options), admin audit trail logging, health monitoring (`/api/health`), automated unit test suite, `.env.example` setup, database reset script, and deployment documentation.
 
 ---
 
-## 📁 Folder Structure
+## 🗝️ Demo Accounts (Phase 1 - 5)
 
-```text
-School_mgt_system/
-├── public/                 # Static assets & favicon
-├── src/
-│   ├── assets/             # Images and visual media
-│   ├── components/         # Reusable React UI components
-│   │   ├── AttendanceTracker.jsx
-│   │   ├── CourseList.jsx
-│   │   ├── Dashboard.jsx
-│   │   ├── GradeBook.jsx
-│   │   ├── Navbar.jsx
-│   │   ├── Sidebar.jsx
-│   │   ├── StudentList.jsx
-│   │   ├── StudentModal.jsx
-│   │   └── TeacherList.jsx
-│   ├── context/            # React Context State Management
-│   │   └── AppContext.jsx
-│   ├── data/               # Seed data for initial state
-│   │   └── initialData.js
-│   ├── App.jsx             # Main Application Routing Shell
-│   ├── index.css           # Global Design Tokens & Theme Styles
-│   └── main.jsx            # React Entry Point
-├── .gitignore              # Git Ignore Rules
-├── index.html              # HTML Root
-├── LICENSE                 # MIT License
-├── package.json            # NPM Dependencies & Scripts
-├── README.md               # Documentation
-└── vite.config.js          # Vite Build Configuration
+| Role | Email | Password | Primary Module Access |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@school.com` | `admin123` | Full System Access, Record Managers, Timetables, Reports, Analytics |
+| **Teacher** | `teacher@school.com` | `teacher123` | Assigned Classes, Attendance Register, Homework Grading, Marks Entry |
+| **Student** | `student@school.com` | `student123` | Class Schedule, Pending Homework Submission, Exam Schedule, Report Card |
+| **Parent** | `parent@school.com` | `parent123` | Child's Attendance Register, Child Homework, Official Printable Report Card |
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Frontend**: React 19, Vite, Lucide React Icons, Custom CSS HSL Tokens & Glassmorphism
+- **Backend API**: Node.js, Express, CORS, JSON Web Tokens (`jsonwebtoken`), `bcryptjs` Password Security
+- **State & Router**: Context API (`AuthContext`), Protected Route Guard (`ProtectedRoute`), Error Boundary
+- **Security & Quality**: In-Memory Rate Limiter, HTTP Security Headers, Audit Logger, Automated Test Suite (`testRunner.js`)
+
+---
+
+## 🔌 API Endpoints Summary
+
+### Authentication & Users
+- `POST /api/auth/login` - User login & JWT issuance
+- `GET /api/auth/me` - Token session verification
+- `POST /api/auth/logout` - User sign-out
+- `GET /api/users` - User list (Admin only)
+
+### School & Record Management (Phase 2)
+- `GET /api/school/profile` & `PUT /api/school/profile` - School profile setup
+- `GET /api/school/classes` & `POST /api/school/classes` - Class levels & sections
+- `GET /api/school/subjects` & `POST /api/school/subjects` - Subject catalog
+- `GET /api/records/students` & `POST /api/records/students` - Student records CRUD
+- `GET /api/records/teachers` & `POST /api/records/teachers` - Faculty records CRUD
+- `GET /api/records/parents` & `POST /api/records/parents` - Parent records CRUD
+
+### Academic Operations (Phase 3)
+- `GET /api/academic/timetables` & `POST /api/academic/timetables` - Timetable schedule & conflict check
+- `GET /api/academic/attendance` & `POST /api/academic/attendance` - Daily attendance register
+- `GET /api/academic/assignments` & `POST /api/academic/submissions` - Homework & grading
+- `GET /api/academic/exams` & `POST /api/academic/results` - Exams & grade calculation
+
+### Communication & Reporting (Phase 4)
+- `GET /api/communication/announcements` & `POST /api/communication/announcements` - School notices
+- `GET /api/communication/notifications` & `POST /api/communication/notifications/:id/read` - Notifications
+- `GET /api/communication/reports/student/:studentId` - Printable report card data
+- `GET /api/communication/analytics` - Institutional pass rates & metrics
+
+### System Health & Security (Phase 5)
+- `GET /api/health` - Server health status, uptime seconds, and memory metrics
+
+---
+
+## 🧪 Testing & Verification
+
+Run the automated unit and integration test suite:
+
+```bash
+npm test
 ```
 
----
+Build production bundle:
 
-## 🚀 Getting Started
+```bash
+npm run build
+```
 
-### Prerequisites
+Reset database store to baseline data:
 
-Ensure you have [Node.js](https://nodejs.org/) (v18.0 or later) installed on your system.
-
-### Installation
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/yahwe388-droid/School_mgt_system.git
-   cd School_mgt_system
-   ```
-
-2. **Install Dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Run Development Server**
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:3000` in your browser.
-
-4. **Build for Production**
-   ```bash
-   npm run build
-   ```
+```bash
+npm run db:reset
+```
 
 ---
 
