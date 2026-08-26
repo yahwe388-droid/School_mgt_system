@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { UserCheck, BookOpen, Users, CalendarCheck, Award, Calendar, Activity } from 'lucide-react';
+import { UserCheck, BookOpen, Users, CalendarCheck, Award, Calendar, Activity, Bell, Printer } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { AttendanceManager } from '../academic/AttendanceManager';
 import { AssignmentManager } from '../academic/AssignmentManager';
 import { TimetableManager } from '../academic/TimetableManager';
 import { ExamManager } from '../academic/ExamManager';
 import { ResultManager } from '../academic/ResultManager';
+import { AnnouncementManager } from '../communication/AnnouncementManager';
+import { NotificationCenter } from '../communication/NotificationCenter';
+import { ReportGenerator } from '../communication/ReportGenerator';
 
 export const TeacherDashboard = () => {
   const { user } = useAuth();
@@ -13,15 +16,21 @@ export const TeacherDashboard = () => {
 
   const tabs = [
     { id: 'overview', label: 'Workload Overview', icon: Activity },
+    { id: 'notices', label: 'School Notices', icon: Bell },
+    { id: 'notifications', label: 'My Notifications', icon: Bell },
+    { id: 'reports', label: 'Class Reports', icon: Printer },
     { id: 'attendance', label: 'Class Attendance', icon: CalendarCheck },
     { id: 'assignments', label: 'Homework & Grading', icon: BookOpen },
-    { id: 'timetable', label: 'My Teaching Schedule', icon: Calendar },
+    { id: 'timetable', label: 'My Schedule', icon: Calendar },
     { id: 'exams', label: 'Exams & Quizzes', icon: Award },
     { id: 'results', label: 'Student Results', icon: Award },
   ];
 
   const renderContent = () => {
     switch (activeTab) {
+      case 'notices': return <AnnouncementManager />;
+      case 'notifications': return <NotificationCenter />;
+      case 'reports': return <ReportGenerator />;
       case 'attendance': return <AttendanceManager />;
       case 'assignments': return <AssignmentManager />;
       case 'timetable': return <TimetableManager />;
@@ -35,7 +44,7 @@ export const TeacherDashboard = () => {
             <div className="glass-card" style={{ padding: '1.5rem', background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(99, 102, 241, 0.1))', borderLeft: '4px solid var(--accent-cyan)' }}>
               <h2 style={{ fontSize: '1.25rem' }}>Welcome, {user?.name} (Faculty Portal)</h2>
               <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-                Department: {user?.department || 'Computer Science'} • Phase 3 Academic Operations Active
+                Department: {user?.department || 'Computer Science'} • Phase 4 Operational Communication Active
               </p>
             </div>
 
@@ -43,17 +52,14 @@ export const TeacherDashboard = () => {
             <div className="glass-card" style={{ padding: '1.5rem' }}>
               <h3 style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Faculty Workload Shortcuts</h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
+                <button className="btn btn-secondary" onClick={() => setActiveTab('notices')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
+                  <Bell size={20} color="var(--primary)" /> View School Announcements
+                </button>
+                <button className="btn btn-secondary" onClick={() => setActiveTab('reports')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
+                  <Printer size={20} color="var(--accent-emerald)" /> Generate Class Reports
+                </button>
                 <button className="btn btn-secondary" onClick={() => setActiveTab('attendance')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <CalendarCheck size={20} color="var(--accent-emerald)" /> Mark Today's Attendance
-                </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('assignments')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <BookOpen size={20} color="var(--primary)" /> Grade Homework Submissions
-                </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('timetable')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <Calendar size={20} color="var(--accent-cyan)" /> View Teaching Schedule
-                </button>
-                <button className="btn btn-secondary" onClick={() => setActiveTab('results')} style={{ padding: '1rem', justifyContent: 'flex-start' }}>
-                  <Award size={20} color="var(--accent-amber)" /> Enter Student Marks
+                  <CalendarCheck size={20} color="var(--accent-cyan)" /> Mark Today's Attendance
                 </button>
               </div>
             </div>
