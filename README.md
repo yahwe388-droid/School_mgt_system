@@ -1,6 +1,6 @@
-# 🎓 Student Management System (AcademiX)
+# 🏫 School Management System
 
-A modern, high-performance, responsive **Student Management System** built with **React 19**, **Vite**, **Lucide Icons**, and custom modern CSS variables (Glassmorphism & Dark Mode). 
+A modern, high-performance, responsive **School Management System** built with **React 19**, **Vite**, **Lucide Icons**, and custom modern CSS variables (Glassmorphism & Dark Mode). 
 
 Designed for educational institutions to seamlessly manage students, faculty, course catalogs, daily attendance, gradebooks, and real-time analytical insights.
 

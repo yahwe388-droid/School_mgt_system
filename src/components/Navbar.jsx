@@ -33,7 +33,7 @@ export const Navbar = () => {
       {/* Title Breadcrumb */}
       <div>
         <h1 style={{ fontSize: '1.25rem', color: 'var(--text-main)' }}>{getTitle()}</h1>
-        <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>AcademiX Portal / {activeTab}</p>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>School Management System / {activeTab}</p>
       </div>
 
       {/* Search and Right Actions */}

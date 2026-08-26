@@ -50,8 +50,8 @@ export const Sidebar = () => {
           <BookMarked size={22} />
         </div>
         <div>
-          <h2 style={{ color: '#ffffff', fontSize: '1.25rem', lineHeight: '1.2' }}>AcademiX</h2>
-          <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: '500' }}>Edu Suite v1.0</span>
+          <h2 style={{ color: '#ffffff', fontSize: '1.1rem', lineHeight: '1.2' }}>School Management</h2>
+          <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: '500' }}>System Portal</span>
         </div>
       </div>
 
