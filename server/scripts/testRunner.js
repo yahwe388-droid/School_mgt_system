@@ -3,8 +3,10 @@ import { db } from '../config/db.js';
 import { checkTimetableConflict, calculateGrade, calculateAttendanceStats } from '../utils/academicCalculations.js';
 import { generateStudentReport, generateAnalyticsData } from '../utils/reportGenerator.js';
 import { JWT_SECRET } from '../middleware/authMiddleware.js';
+import { runAuthRbacTestSuite } from './testAuthRbacSuite.js';
+import { runFullAuditTestSuite } from './testFullAuditSuite.js';
 
-const runTests = () => {
+const runTests = async () => {
   console.log('\n======================================================');
   console.log('🧪 SCHOOL MANAGEMENT SYSTEM - AUTOMATED TEST SUITE');
   console.log('======================================================\n');
@@ -24,10 +26,10 @@ const runTests = () => {
 
   // Test 1: Database Seed Integrity
   assert(db.getUsers().length >= 4, 'Database initialized with pre-seeded users');
-  assert(db.findUserByEmail('admin@school.com')?.role === 'Admin', 'Admin user present with Admin role');
-  assert(db.findUserByEmail('teacher@school.com')?.role === 'Teacher', 'Teacher user present with Teacher role');
-  assert(db.findUserByEmail('student@school.com')?.role === 'Student', 'Student user present with Student role');
-  assert(db.findUserByEmail('parent@school.com')?.role === 'Parent', 'Parent user present with Parent role');
+  assert(db.findUserByEmail('admin@school.com')?.role?.toUpperCase() === 'ADMIN', 'Admin user present with ADMIN role');
+  assert(db.findUserByEmail('teacher@school.com')?.role?.toUpperCase() === 'TEACHER', 'Teacher user present with TEACHER role');
+  assert(db.findUserByEmail('student@school.com')?.role?.toUpperCase() === 'STUDENT', 'Student user present with STUDENT role');
+  assert(db.findUserByEmail('parent@school.com')?.role?.toUpperCase() === 'PARENT', 'Parent user present with PARENT role');
 
   // Test 2: JWT Security Token Verification
   const token = jwt.sign({ id: 'USR-001', role: 'Admin' }, JWT_SECRET, { expiresIn: '1h' });
@@ -65,12 +67,23 @@ const runTests = () => {
   const report = generateStudentReport(db, 'STU-1001');
   assert(report && report.student.id === 'STU-1001', 'Report Card Generator compiles student academic dossier');
 
+  // Run the 13-Test RBAC & Authentication Suite
+  const rbacRes = await runAuthRbacTestSuite();
+  passed += rbacRes.passed;
+  failed += rbacRes.failed;
+
+  // Run the 23-Test Full Audit & Verification Suite
+  const auditRes = await runFullAuditTestSuite();
+  passed += auditRes.passed;
+  failed += auditRes.failed;
+
   // Summary
   console.log('\n======================================================');
-  console.log(`📊 TEST SUITE SUMMARY: ${passed} PASSED, ${failed} FAILED`);
+  console.log(`📊 COMPLETE TEST SUITE SUMMARY: ${passed} PASSED, ${failed} FAILED`);
   console.log('======================================================\n');
 
   if (failed > 0) process.exit(1);
 };
 
 runTests();
+
