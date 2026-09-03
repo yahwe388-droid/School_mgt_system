@@ -7,7 +7,15 @@ export const recordController = {
   },
 
   addStudent: (req, res) => {
-    const newStu = db.addStudent(req.body);
+    let studentId = req.body.studentId || req.body.admissionNo;
+    if (!studentId || !studentId.startsWith('KM/')) {
+      studentId = db.allocateNextStudentId();
+    }
+    const newStu = db.addStudent({
+      ...req.body,
+      studentId,
+      admissionNo: studentId
+    });
     res.status(201).json({ success: true, message: 'Student record created', student: newStu });
   },
 

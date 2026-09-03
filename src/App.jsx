@@ -2,6 +2,7 @@ import React from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LoginForm } from './components/auth/LoginForm';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { ChangePasswordModal } from './components/auth/ChangePasswordModal';
 import { AppShell } from './components/layout/AppShell';
 import { AdminDashboard } from './components/dashboards/AdminDashboard';
 import { TeacherDashboard } from './components/dashboards/TeacherDashboard';
@@ -11,48 +12,97 @@ import { LoadingSpinner } from './components/common/LoadingSpinner';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 const MainContent = () => {
-  const { user, isAuthenticated, loading } = useAuth();
+  const { user, isAuthenticated, loading, currentPath, getRoleDashboardPath } = useAuth();
 
   if (loading) {
-    return <LoadingSpinner fullScreen text="Initializing School Management System..." />;
+    return <LoadingSpinner fullScreen text="Initializing EduCore Portal..." />;
   }
 
   if (!isAuthenticated) {
     return <LoginForm />;
   }
 
-  const renderRoleDashboard = () => {
-    switch (user?.role) {
-      case 'Admin':
+  // Force password change on first login
+  if (user?.must_change_password || currentPath === '/change-password') {
+    return <ChangePasswordModal />;
+  }
+
+  const role = (user?.role || '').toUpperCase();
+
+  // Route & Role Matching
+  const renderDashboardByRoute = () => {
+    // Check if accessing admin route
+    if (currentPath.startsWith('/admin')) {
+      return (
+        <ProtectedRoute allowedRoles={['ADMIN']}>
+          <AdminDashboard />
+        </ProtectedRoute>
+      );
+    }
+
+    // Check if accessing teacher route
+    if (currentPath.startsWith('/teacher')) {
+      return (
+        <ProtectedRoute allowedRoles={['TEACHER', 'ADMIN']}>
+          <TeacherDashboard />
+        </ProtectedRoute>
+      );
+    }
+
+    // Check if accessing student route
+    if (currentPath.startsWith('/student')) {
+      return (
+        <ProtectedRoute allowedRoles={['STUDENT', 'ADMIN']}>
+          <StudentDashboard />
+        </ProtectedRoute>
+      );
+    }
+
+    // Check if accessing parent route
+    if (currentPath.startsWith('/parent')) {
+      return (
+        <ProtectedRoute allowedRoles={['PARENT', 'ADMIN']}>
+          <ParentDashboard />
+        </ProtectedRoute>
+      );
+    }
+
+    // Default route mapping based on user's authenticated database role
+    switch (role) {
+      case 'ADMIN':
         return (
-          <ProtectedRoute allowedRoles={['Admin']}>
+          <ProtectedRoute allowedRoles={['ADMIN']}>
             <AdminDashboard />
           </ProtectedRoute>
         );
-      case 'Teacher':
+      case 'TEACHER':
         return (
-          <ProtectedRoute allowedRoles={['Teacher']}>
+          <ProtectedRoute allowedRoles={['TEACHER']}>
             <TeacherDashboard />
           </ProtectedRoute>
         );
-      case 'Student':
+      case 'STUDENT':
         return (
-          <ProtectedRoute allowedRoles={['Student']}>
+          <ProtectedRoute allowedRoles={['STUDENT']}>
             <StudentDashboard />
           </ProtectedRoute>
         );
-      case 'Parent':
+      case 'PARENT':
         return (
-          <ProtectedRoute allowedRoles={['Parent']}>
+          <ProtectedRoute allowedRoles={['PARENT']}>
             <ParentDashboard />
           </ProtectedRoute>
         );
       default:
-        return <div>Invalid Role</div>;
+        return (
+          <div style={{ padding: '2rem', textAlign: 'center', color: '#ef4444' }}>
+            Invalid or Unrecognized System Role
+          </div>
+        );
     }
   };
 
-  return <AppShell>{renderRoleDashboard()}</AppShell>;
+  return <AppShell>{renderDashboardByRoute()}</AppShell>;
 };
 
 export const App = () => {
@@ -66,3 +116,4 @@ export const App = () => {
 };
 
 export default App;
+

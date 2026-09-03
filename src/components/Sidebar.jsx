@@ -37,21 +37,24 @@ export const Sidebar = () => {
       {/* Brand Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0 0.5rem 2rem 0.5rem' }}>
         <div style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: '10px',
-          background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+          width: '44px',
+          height: '44px',
+          borderRadius: '50%',
+          backgroundColor: 'rgba(255, 255, 255, 0.08)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#ffffff',
-          boxShadow: '0 4px 12px rgba(99,102,241,0.4)'
+          padding: '2px',
+          boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
+          border: '2px solid rgba(255,255,255,0.15)',
+          overflow: 'hidden',
+          flexShrink: 0
         }}>
-          <BookMarked size={22} />
+          <img src="/logo.png" alt="EduCore Logo" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
         </div>
         <div>
-          <h2 style={{ color: '#ffffff', fontSize: '1.1rem', lineHeight: '1.2' }}>School Management</h2>
-          <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: '500' }}>System Portal</span>
+          <h2 style={{ color: '#ffffff', fontSize: '1.1rem', fontWeight: '700', lineHeight: '1.2' }}>EduCore</h2>
+          <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '500' }}>Management System</span>
         </div>
       </div>
 

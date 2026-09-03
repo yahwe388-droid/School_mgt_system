@@ -6,11 +6,11 @@ export const Topbar = () => {
   const { user, logout, theme, toggleTheme } = useAuth();
 
   const getRoleBadge = (role) => {
-    switch (role) {
-      case 'Admin': return { bg: 'rgba(99, 102, 241, 0.15)', color: '#6366f1', icon: Shield };
-      case 'Teacher': return { bg: 'rgba(6, 182, 212, 0.15)', color: '#06b6d4', icon: UserCheck };
-      case 'Student': return { bg: 'rgba(16, 185, 129, 0.15)', color: '#10b981', icon: GraduationCap };
-      case 'Parent': return { bg: 'rgba(245, 158, 11, 0.15)', color: '#f59e0b', icon: Users };
+    switch (role?.toUpperCase()) {
+      case 'ADMIN': return { bg: 'rgba(99, 102, 241, 0.15)', color: '#818cf8', icon: Shield };
+      case 'TEACHER': return { bg: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', icon: UserCheck };
+      case 'STUDENT': return { bg: 'rgba(16, 185, 129, 0.15)', color: '#34d399', icon: GraduationCap };
+      case 'PARENT': return { bg: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24', icon: Users };
       default: return { bg: 'rgba(148, 163, 184, 0.15)', color: '#94a3b8', icon: Shield };
     }
   };

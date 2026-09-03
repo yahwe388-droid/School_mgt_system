@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import { securityHeaders, rateLimiter } from './middleware/securityMiddleware.js';
+import { securityHeaders, rateLimiter, authFailureRateLimiter } from './middleware/securityMiddleware.js';
 import { logger } from './utils/logger.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
+import { teacherRouter, studentRouter, parentRouter } from './routes/roleProtectedRoutes.js';
 import schoolRoutes from './routes/schoolRoutes.js';
 import recordRoutes from './routes/recordRoutes.js';
 import academicRoutes from './routes/academicRoutes.js';
@@ -15,11 +17,14 @@ const serverStartTime = Date.now();
 
 // Security & Logging Middleware
 app.use(securityHeaders);
-app.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 150 })); // Rate Limit 150 req / 15 mins
+app.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 200 })); // General Rate Limit 200 req / 15 mins
+
+// Dedicated failed-login brute-force rate limiter (10 failed attempts per 15 mins)
+const loginFailureLimiter = authFailureRateLimiter({ windowMs: 15 * 60 * 1000, maxFailures: 10 });
 
 app.use(cors({
   origin: process.env.CORS_ORIGIN || '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
@@ -31,7 +36,12 @@ app.use((req, res, next) => {
 });
 
 // API Routes
+app.use('/api/auth/login', loginFailureLimiter);
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/teacher', teacherRouter);
+app.use('/api/student', studentRouter);
+app.use('/api/parent', parentRouter);
 app.use('/api/users', userRoutes);
 app.use('/api/school', schoolRoutes);
 app.use('/api/records', recordRoutes);
