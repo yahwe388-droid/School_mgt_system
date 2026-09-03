@@ -1,6 +1,7 @@
 import express from 'express';
 import { communicationController } from '../controllers/communicationController.js';
 import { authenticateToken, requireRole } from '../middleware/authMiddleware.js';
+import { authorizeStudentAccess } from '../middleware/objectAuthMiddleware.js';
 
 const router = express.Router();
 
@@ -12,8 +13,8 @@ router.post('/announcements', authenticateToken, requireRole(['Admin', 'Teacher'
 router.get('/notifications', authenticateToken, communicationController.getNotifications);
 router.post('/notifications/:id/read', authenticateToken, communicationController.markNotificationRead);
 
-// Reports & Analytics
-router.get('/reports/student/:studentId', authenticateToken, communicationController.getStudentReportCard);
+// Reports & Analytics (Protected by object authorization)
+router.get('/reports/student/:studentId', authenticateToken, authorizeStudentAccess, communicationController.getStudentReportCard);
 router.get('/analytics', authenticateToken, communicationController.getAnalytics);
 
 export default router;

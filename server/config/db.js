@@ -5,44 +5,81 @@ const salt = bcrypt.genSaltSync(10);
 export const initialUsers = [
   {
     id: "USR-001",
+    username: "admin",
     name: "System Administrator",
+    first_name: "System",
+    last_name: "Administrator",
     email: "admin@school.com",
     passwordHash: bcrypt.hashSync("admin123", salt),
-    role: "Admin",
+    role: "ADMIN",
     department: "Administration",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=250",
-    createdAt: "2026-01-01T00:00:00.000Z"
+    phone: "+1 (555) 100-0001",
+    is_active: true,
+    must_change_password: false,
+    created_by: "SYSTEM",
+    created_at: "2026-01-01T00:00:00.000Z",
+    updated_at: "2026-01-01T00:00:00.000Z",
+    last_login: "2026-09-01T08:00:00.000Z",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=250"
   },
   {
     id: "USR-002",
+    username: "robert.vance",
     name: "Dr. Robert Vance",
+    first_name: "Robert",
+    last_name: "Vance",
     email: "teacher@school.com",
     passwordHash: bcrypt.hashSync("teacher123", salt),
-    role: "Teacher",
+    role: "TEACHER",
     department: "Computer Science",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250",
-    createdAt: "2026-01-02T00:00:00.000Z"
+    phone: "+1 (555) 987-6543",
+    is_active: true,
+    must_change_password: false,
+    created_by: "USR-001",
+    created_at: "2026-01-02T00:00:00.000Z",
+    updated_at: "2026-01-02T00:00:00.000Z",
+    last_login: "2026-09-02T10:15:00.000Z",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250"
   },
   {
     id: "USR-003",
+    username: "KM/34567/18",
     name: "Alex Morgan",
+    first_name: "Alex",
+    last_name: "Morgan",
     email: "student@school.com",
+    studentId: "KM/34567/18",
     passwordHash: bcrypt.hashSync("student123", salt),
-    role: "Student",
+    role: "STUDENT",
     department: "Computer Science",
     grade: "Senior",
-    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=250",
-    createdAt: "2026-01-03T00:00:00.000Z"
+    phone: "+1 (555) 345-6789",
+    is_active: true,
+    must_change_password: false,
+    created_by: "USR-001",
+    created_at: "2026-01-03T00:00:00.000Z",
+    updated_at: "2026-01-03T00:00:00.000Z",
+    last_login: "2026-09-03T14:20:00.000Z",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=250"
   },
   {
     id: "USR-004",
+    username: "david.morgan",
     name: "David Morgan",
+    first_name: "David",
+    last_name: "Morgan",
     email: "parent@school.com",
     passwordHash: bcrypt.hashSync("parent123", salt),
-    role: "Parent",
+    role: "PARENT",
     children: ["STU-1001"],
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250",
-    createdAt: "2026-01-04T00:00:00.000Z"
+    phone: "+1 (555) 456-7890",
+    is_active: true,
+    must_change_password: false,
+    created_by: "USR-001",
+    created_at: "2026-01-04T00:00:00.000Z",
+    updated_at: "2026-01-04T00:00:00.000Z",
+    last_login: "2026-09-03T18:05:00.000Z",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250"
   }
 ];
 
@@ -91,7 +128,8 @@ export const initialStudents = [
   {
     id: "STU-1001",
     userId: "USR-003",
-    admissionNo: "ADM-2026-001",
+    studentId: "KM/34567/18",
+    admissionNo: "KM/34567/18",
     name: "Alex Morgan",
     email: "student@school.com",
     classId: "CLS-12",
@@ -104,7 +142,8 @@ export const initialStudents = [
   {
     id: "STU-1002",
     userId: "",
-    admissionNo: "ADM-2026-002",
+    studentId: "KM/34568/18",
+    admissionNo: "KM/34568/18",
     name: "Sophia Chen",
     email: "sophia.chen@school.com",
     classId: "CLS-11",
@@ -291,6 +330,48 @@ export const initialNotifications = [
   }
 ];
 
+export const initialMessages = [
+  {
+    id: "MSG-101",
+    senderId: "USR-002",
+    senderName: "Dr. Robert Vance",
+    senderRole: "TEACHER",
+    recipientId: "USR-004",
+    recipientName: "David Morgan",
+    recipientRole: "PARENT",
+    subject: "Alex's Academic Progress in CS-401",
+    content: "Dear Mr. Morgan, Alex demonstrated outstanding mastery in our recent Data Structures assessment (94%). Keep encouraging his interest in software architecture.",
+    createdAt: "2026-08-27T10:30:00.000Z",
+    isRead: false
+  },
+  {
+    id: "MSG-102",
+    senderId: "USR-003",
+    senderName: "Alex Morgan",
+    senderRole: "STUDENT",
+    recipientId: "USR-002",
+    recipientName: "Dr. Robert Vance",
+    recipientRole: "TEACHER",
+    subject: "Question regarding AVL tree rotations",
+    content: "Dr. Vance, for assignment ASN-001, should we handle left-right double rotations iteratively or recursively in the delete method?",
+    createdAt: "2026-08-28T14:15:00.000Z",
+    isRead: true
+  },
+  {
+    id: "MSG-103",
+    senderId: "USR-001",
+    senderName: "System Administrator",
+    senderRole: "ADMIN",
+    recipientId: "USR-002",
+    recipientName: "Dr. Robert Vance",
+    recipientRole: "TEACHER",
+    subject: "Faculty Curriculum Review Session",
+    content: "Reminder that the quarterly curriculum and accreditation review meets this Thursday in Conference Room B.",
+    createdAt: "2026-08-29T09:00:00.000Z",
+    isRead: true
+  }
+];
+
 class DatabaseStore {
   constructor() {
     this.users = [...initialUsers];
@@ -315,9 +396,56 @@ class DatabaseStore {
     // Phase 4 Collections
     this.announcements = [...initialAnnouncements];
     this.notifications = [...initialNotifications];
+    this.messages = [...initialMessages];
 
     // Phase 5 Audit Store
     this.auditLogs = [];
+
+    // Authentication Activity Audit Store
+    this.authLogs = [
+      {
+        id: "AUTH-INIT-01",
+        userId: "USR-001",
+        username: "admin",
+        name: "System Administrator",
+        role: "ADMIN",
+        type: "LOGIN_SUCCESS",
+        status: "SUCCESS",
+        ip: "127.0.0.1",
+        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+        timestamp: new Date(Date.now() - 3600000).toISOString()
+      },
+      {
+        id: "AUTH-INIT-02",
+        userId: "USR-002",
+        username: "robert.vance",
+        name: "Dr. Robert Vance",
+        role: "TEACHER",
+        type: "LOGIN_SUCCESS",
+        status: "SUCCESS",
+        ip: "127.0.0.1",
+        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+        timestamp: new Date(Date.now() - 7200000).toISOString()
+      }
+    ];
+
+    // School Settings Store
+    this.schoolSettings = {
+      name: "Greenwood International Academy",
+      motto: "Excellence in Knowledge & Character",
+      logoUrl: "/logo.png",
+      studentIdPrefix: "KM",
+      studentIdSequence: 34566,
+      studentIdYear: "18",
+      email: "info@greenwood.edu",
+      phone: "+1 (555) 234-5678",
+      address: "100 Education Way, Innovation City",
+      academicYear: "AY 2025-2026",
+      term: "Fall Term 2026"
+    };
+
+    // Sequential Student ID Allocation Mutex Queue
+    this._studentIdLock = Promise.resolve();
   }
 
   // Audit Log Methods
@@ -331,10 +459,141 @@ class DatabaseStore {
     return this.auditLogs;
   }
 
+  // Authentication Activity Audit Log Methods
+  logAuthActivity(entry) {
+    const log = {
+      id: `AUTH-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      timestamp: new Date().toISOString(),
+      ...entry
+    };
+    this.authLogs.unshift(log);
+    if (this.authLogs.length > 200) this.authLogs.pop();
+    return log;
+  }
+
+  getAuthLogs(limit = 10) {
+    return this.authLogs.slice(0, limit);
+  }
+
+  // School Settings Methods
+  getSchoolSettings() {
+    return this.schoolSettings;
+  }
+
+  updateSchoolSettings(data) {
+    this.schoolSettings = { ...this.schoolSettings, ...data };
+    return this.schoolSettings;
+  }
+
+  /**
+   * Thread-safe Student ID generator: KM/{SEQUENCE}/{YEAR}
+   * Preserves existing student IDs immutably without renumbering.
+   * Deterministically allocates next sequence (starts at 34567).
+   */
+  allocateNextStudentId() {
+    const prefix = this.schoolSettings.studentIdPrefix || 'KM';
+    const year = this.schoolSettings.studentIdYear || '18';
+    const pattern = new RegExp(`^${prefix}/(\\d+)/${year}$`, 'i');
+
+    let maxSeq = parseInt(this.schoolSettings.studentIdSequence, 10) || 34566;
+
+    // Scan all existing students to find highest allocated sequence
+    for (const s of this.students) {
+      const candidate = s.admissionNo || s.studentId || s.id;
+      if (candidate) {
+        const match = candidate.match(pattern);
+        if (match) {
+          const seq = parseInt(match[1], 10);
+          if (!isNaN(seq) && seq > maxSeq) {
+            maxSeq = seq;
+          }
+        }
+      }
+    }
+
+    const nextSeq = maxSeq + 1;
+    this.schoolSettings.studentIdSequence = nextSeq;
+    return `${prefix}/${nextSeq}/${year}`;
+  }
+
   // Users
   getUsers() { return this.users; }
-  findUserByEmail(email) { return this.users.find(u => u.email.toLowerCase() === email.toLowerCase()); }
+  findUserByEmail(email) {
+    if (!email) return null;
+    return this.users.find(u => u.email && u.email.toLowerCase() === email.toLowerCase());
+  }
+  findUserByUsername(username) {
+    if (!username) return null;
+    return this.users.find(u => u.username && u.username.toLowerCase() === username.toLowerCase());
+  }
+  findUserByUsernameOrEmail(identifier) {
+    if (!identifier) return null;
+    const clean = identifier.trim().toLowerCase();
+    return this.users.find(u => 
+      (u.username && u.username.toLowerCase() === clean) ||
+      (u.studentId && u.studentId.toLowerCase() === clean) ||
+      (u.aliasUsername && u.aliasUsername.toLowerCase() === clean) ||
+      (u.email && u.email.toLowerCase() === clean) ||
+      (u.id === 'USR-003' && clean === 'alex.morgan')
+    );
+  }
   findUserById(id) { return this.users.find(u => u.id === id); }
+
+  createUser(userData) {
+    const newUser = {
+      id: `USR-${Date.now()}`,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      is_active: true,
+      must_change_password: true,
+      last_login: null,
+      ...userData,
+      // Normalize role uppercase
+      role: (userData.role || 'STUDENT').toUpperCase(),
+      name: userData.name || `${userData.first_name || ''} ${userData.last_name || ''}`.trim()
+    };
+    this.users.push(newUser);
+    return newUser;
+  }
+
+  updateUser(id, data) {
+    const idx = this.users.findIndex(u => u.id === id);
+    if (idx === -1) return null;
+
+    // Disallow role modification through general profile update
+    const { role, passwordHash, id: _id, ...safeUpdates } = data;
+    this.users[idx] = {
+      ...this.users[idx],
+      ...safeUpdates,
+      name: safeUpdates.name || `${safeUpdates.first_name || this.users[idx].first_name || ''} ${safeUpdates.last_name || this.users[idx].last_name || ''}`.trim(),
+      updated_at: new Date().toISOString()
+    };
+    return this.users[idx];
+  }
+
+  setUserActiveStatus(id, isActive) {
+    const user = this.findUserById(id);
+    if (!user) return null;
+    user.is_active = !!isActive;
+    user.updated_at = new Date().toISOString();
+    return user;
+  }
+
+  resetUserPassword(id, passwordHash) {
+    const user = this.findUserById(id);
+    if (!user) return null;
+    user.passwordHash = passwordHash;
+    user.must_change_password = true;
+    user.updated_at = new Date().toISOString();
+    return user;
+  }
+
+  recordUserLogin(id) {
+    const user = this.findUserById(id);
+    if (user) {
+      user.last_login = new Date().toISOString();
+    }
+  }
 
   // School Profile
   getSchoolProfile() { return this.schoolProfile; }
@@ -525,6 +784,32 @@ class DatabaseStore {
   markNotificationAsRead(id) {
     this.notifications = this.notifications.map(n => n.id === id ? { ...n, isRead: true } : n);
     return true;
+  }
+
+  // Phase 5 Methods: Real Messages
+  getMessages(userId) {
+    if (!userId) return this.messages;
+    return this.messages.filter(m => m.recipientId === userId || m.senderId === userId);
+  }
+
+  sendMessage(data) {
+    const newMsg = {
+      id: `MSG-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      createdAt: new Date().toISOString(),
+      isRead: false,
+      ...data
+    };
+    this.messages.unshift(newMsg);
+    return newMsg;
+  }
+
+  markMessageAsRead(id, userId) {
+    const msg = this.messages.find(m => m.id === id);
+    if (msg && (!userId || msg.recipientId === userId)) {
+      msg.isRead = true;
+      return msg;
+    }
+    return null;
   }
 }
 

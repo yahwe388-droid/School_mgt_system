@@ -4,11 +4,15 @@ import { generateStudentReport, generateAnalyticsData } from '../utils/reportGen
 export const communicationController = {
   // Announcements
   getAnnouncements: (req, res) => {
-    const userRole = req.user?.role;
+    const userRole = (req.user?.role || '').toUpperCase();
     const all = db.getAnnouncements();
 
     // Filter by role visibility
-    const filtered = all.filter(a => a.targetRole === 'All' || a.targetRole === userRole || userRole === 'Admin');
+    const filtered = all.filter(a => 
+      a.targetRole === 'All' || 
+      (a.targetRole && a.targetRole.toUpperCase() === userRole) || 
+      userRole === 'ADMIN'
+    );
     res.status(200).json({ success: true, announcements: filtered });
   },
 
