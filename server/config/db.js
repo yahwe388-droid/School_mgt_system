@@ -105,16 +105,26 @@ export const initialTerms = [
 ];
 
 export const initialClasses = [
-  { id: "CLS-09", title: "Grade 9 (Freshman)", code: "G9", level: 9 },
-  { id: "CLS-10", title: "Grade 10 (Sophomore)", code: "G10", level: 10 },
-  { id: "CLS-11", title: "Grade 11 (Junior)", code: "G11", level: 11 },
-  { id: "CLS-12", title: "Grade 12 (Senior)", code: "G12", level: 12 }
+  { id: "CLS-09", title: "Grade 9 (Freshman)", code: "G9", level: 9, status: "Active" },
+  { id: "CLS-10", title: "Grade 10 (Sophomore)", code: "G10", level: 10, status: "Active" },
+  { id: "CLS-11", title: "Grade 11 (Junior)", code: "G11", level: 11, status: "Active" },
+  { id: "CLS-12", title: "Grade 12 (Senior)", code: "G12", level: 12, status: "Active" }
 ];
 
 export const initialSections = [
-  { id: "SEC-A", classId: "CLS-12", title: "Section A", room: "Room 301", capacity: 35 },
-  { id: "SEC-B", classId: "CLS-12", title: "Section B", room: "Room 302", capacity: 35 },
-  { id: "SEC-C", classId: "CLS-11", title: "Section A", room: "Room 201", capacity: 35 }
+  // Grade 9 Sections
+  { id: "SEC-9A", classId: "CLS-09", title: "Section A", room: "Room 101", capacity: 30, status: "Active" },
+  { id: "SEC-9B", classId: "CLS-09", title: "Section B", room: "Room 102", capacity: 30, status: "Active" },
+  { id: "SEC-9C", classId: "CLS-09", title: "Section C", room: "Room 103", capacity: 30, status: "Active" },
+  // Grade 10 Sections
+  { id: "SEC-10A", classId: "CLS-10", title: "Section A", room: "Room 201", capacity: 32, status: "Active" },
+  { id: "SEC-10B", classId: "CLS-10", title: "Section B", room: "Room 202", capacity: 32, status: "Active" },
+  // Grade 11 Sections
+  { id: "SEC-C", classId: "CLS-11", title: "Section A", room: "Room 301", capacity: 35, status: "Active" },
+  { id: "SEC-11B", classId: "CLS-11", title: "Section B", room: "Room 302", capacity: 35, status: "Active" },
+  // Grade 12 Sections
+  { id: "SEC-A", classId: "CLS-12", title: "Section A", room: "Room 401", capacity: 35, status: "Active" },
+  { id: "SEC-B", classId: "CLS-12", title: "Section B", room: "Room 402", capacity: 35, status: "Active" }
 ];
 
 export const initialSubjects = [
@@ -182,11 +192,81 @@ export const initialParents = [
   }
 ];
 
+export const defaultPeriods = [
+  { id: "P-1", period: 1, name: "Period 1", startTime: "08:30", endTime: "09:15", type: "lesson" },
+  { id: "P-2", period: 2, name: "Period 2", startTime: "09:20", endTime: "10:05", type: "lesson" },
+  { id: "P-BRK", period: "break-1", name: "Morning Break", startTime: "10:05", endTime: "10:25", type: "break" },
+  { id: "P-3", period: 3, name: "Period 3", startTime: "10:25", endTime: "11:10", type: "lesson" },
+  { id: "P-4", period: 4, name: "Period 4", startTime: "11:15", endTime: "12:00", type: "lesson" },
+  { id: "P-LUNCH", period: "lunch", name: "Lunch Break", startTime: "12:00", endTime: "12:45", type: "lunch" },
+  { id: "P-5", period: 5, name: "Period 5", startTime: "12:45", endTime: "13:30", type: "lesson" },
+  { id: "P-6", period: 6, name: "Period 6", startTime: "13:35", endTime: "14:20", type: "lesson" }
+];
+
+export const initialTimetableMasters = [
+  {
+    id: "TTM-CLS12-SECA",
+    classId: "CLS-12",
+    sectionId: "SEC-A",
+    academicYearId: "AY-2025",
+    termId: "TRM-01",
+    status: "Published",
+    createdAt: "2026-01-01T00:00:00.000Z",
+    updatedAt: "2026-01-01T00:00:00.000Z",
+    periods: defaultPeriods,
+    entries: [
+      { id: "TT-001", day: "Monday", period: 1, startTime: "09:00", endTime: "10:00", timeSlot: "09:00 - 10:00 AM", subjectId: "SUB-101", subjectCode: "CS-401", subjectTitle: "Advanced Data Structures & Algorithms", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", room: "Lab 301" },
+      { id: "TT-002", day: "Monday", period: 2, startTime: "10:15", endTime: "11:15", timeSlot: "10:15 - 11:15 AM", subjectId: "SUB-102", subjectCode: "MATH-301", subjectTitle: "Calculus & Linear Algebra", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", room: "Room 301" },
+      { id: "TT-003", day: "Tuesday", period: 1, startTime: "09:00", endTime: "10:00", timeSlot: "09:00 - 10:00 AM", subjectId: "SUB-103", subjectCode: "ENG-201", subjectTitle: "World Literature & Composition", teacherId: "", teacherName: "Unassigned", room: "Room 302" },
+      { id: "TT-004", day: "Wednesday", period: 3, startTime: "11:30", endTime: "12:30", timeSlot: "11:30 - 12:30 PM", subjectId: "SUB-104", subjectCode: "PHY-202", subjectTitle: "General Physics & Mechanics", teacherId: "", teacherName: "Unassigned", room: "Physics Lab" },
+      { id: "TT-005", day: "Thursday", period: 2, startTime: "09:20", endTime: "10:05", timeSlot: "09:20 - 10:05 AM", subjectId: "SUB-101", subjectCode: "CS-401", subjectTitle: "Advanced Data Structures & Algorithms", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", room: "Lab 301" },
+      { id: "TT-006", day: "Friday", period: 1, startTime: "08:30", endTime: "09:15", timeSlot: "08:30 - 09:15 AM", subjectId: "SUB-102", subjectCode: "MATH-301", subjectTitle: "Calculus & Linear Algebra", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", room: "Room 401" }
+    ]
+  },
+  {
+    id: "TTM-CLS11-SECC",
+    classId: "CLS-11",
+    sectionId: "SEC-C",
+    academicYearId: "AY-2025",
+    termId: "TRM-01",
+    status: "Published",
+    createdAt: "2026-01-01T00:00:00.000Z",
+    updatedAt: "2026-01-01T00:00:00.000Z",
+    periods: defaultPeriods,
+    entries: [
+      { id: "TT-011", day: "Monday", period: 3, startTime: "10:25", endTime: "11:10", timeSlot: "10:25 - 11:10 AM", subjectId: "SUB-102", subjectCode: "MATH-301", subjectTitle: "Calculus & Linear Algebra", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", room: "Room 301" },
+      { id: "TT-012", day: "Wednesday", period: 2, startTime: "09:20", endTime: "10:05", timeSlot: "09:20 - 10:05 AM", subjectId: "SUB-104", subjectCode: "PHY-202", subjectTitle: "General Physics & Mechanics", teacherId: "", teacherName: "Unassigned", room: "Physics Lab" },
+      { id: "TT-013", day: "Friday", period: 2, startTime: "09:20", endTime: "10:05", timeSlot: "09:20 - 10:05 AM", subjectId: "SUB-101", subjectCode: "CS-401", subjectTitle: "Advanced Data Structures & Algorithms", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", room: "Lab 301" }
+    ]
+  },
+  {
+    id: "TTM-CLS09-SEC9A",
+    classId: "CLS-09",
+    sectionId: "SEC-9A",
+    academicYearId: "AY-2025",
+    termId: "TRM-01",
+    status: "Published",
+    createdAt: "2026-01-01T00:00:00.000Z",
+    updatedAt: "2026-01-01T00:00:00.000Z",
+    periods: defaultPeriods,
+    entries: [
+      { id: "TT-021", day: "Monday", period: 4, startTime: "11:15", endTime: "12:00", timeSlot: "11:15 - 12:00 PM", subjectId: "SUB-103", subjectCode: "ENG-201", subjectTitle: "World Literature & Composition", teacherId: "", teacherName: "Unassigned", room: "Room 101" },
+      { id: "TT-022", day: "Tuesday", period: 2, startTime: "09:20", endTime: "10:05", timeSlot: "09:20 - 10:05 AM", subjectId: "SUB-102", subjectCode: "MATH-301", subjectTitle: "Calculus & Linear Algebra", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", room: "Room 101" },
+      { id: "TT-023", day: "Thursday", period: 1, startTime: "08:30", endTime: "09:15", timeSlot: "08:30 - 09:15 AM", subjectId: "SUB-104", subjectCode: "PHY-202", subjectTitle: "General Physics & Mechanics", teacherId: "", teacherName: "Unassigned", room: "Physics Lab" }
+    ]
+  }
+];
+
 export const initialTimetables = [
-  { id: "TT-001", classId: "CLS-12", subjectId: "SUB-101", subjectCode: "CS-401", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", day: "Monday", period: 1, timeSlot: "09:00 - 10:00 AM", room: "Lab 301" },
-  { id: "TT-002", classId: "CLS-12", subjectId: "SUB-102", subjectCode: "MATH-301", teacherId: "TCH-201", teacherName: "Dr. Robert Vance", day: "Monday", period: 2, timeSlot: "10:15 - 11:15 AM", room: "Room 301" },
-  { id: "TT-003", classId: "CLS-12", subjectId: "SUB-103", subjectCode: "ENG-201", teacherId: "", teacherName: "Unassigned", day: "Tuesday", period: 1, timeSlot: "09:00 - 10:00 AM", room: "Room 302" },
-  { id: "TT-004", classId: "CLS-12", subjectId: "SUB-104", subjectCode: "PHY-202", teacherId: "", teacherName: "Unassigned", day: "Wednesday", period: 3, timeSlot: "11:30 - 12:30 PM", room: "Physics Lab" }
+  ...initialTimetableMasters.flatMap(tm => tm.entries.map(e => ({
+    ...e,
+    timetableId: tm.id,
+    classId: tm.classId,
+    sectionId: tm.sectionId,
+    academicYearId: tm.academicYearId,
+    termId: tm.termId,
+    status: tm.status
+  })))
 ];
 
 export const initialAttendanceRecords = [
@@ -386,6 +466,7 @@ class DatabaseStore {
     this.teachers = [...initialTeachers];
     this.parents = [...initialParents];
 
+    this.timetableMasters = JSON.parse(JSON.stringify(initialTimetableMasters));
     this.timetables = [...initialTimetables];
     this.attendanceRecords = [...initialAttendanceRecords];
     this.assignments = [...initialAssignments];
@@ -628,10 +709,36 @@ class DatabaseStore {
 
   // Sections
   getSections() { return this.sections; }
+  getSectionsByClass(classId) {
+    if (!classId) return this.sections;
+    return this.sections.filter(s => s.classId === classId);
+  }
+  findSectionById(id) {
+    return this.sections.find(s => s.id === id);
+  }
   addSection(data) {
-    const newSec = { id: `SEC-${Date.now()}`, ...data };
+    const newSec = {
+      id: `SEC-${Date.now()}`,
+      status: 'Active',
+      capacity: 35,
+      ...data
+    };
     this.sections.push(newSec);
     return newSec;
+  }
+  updateSection(id, data) {
+    const idx = this.sections.findIndex(s => s.id === id);
+    if (idx === -1) return null;
+    this.sections[idx] = { ...this.sections[idx], ...data };
+    return this.sections[idx];
+  }
+  deleteSection(id) {
+    this.sections = this.sections.filter(s => s.id !== id);
+    if (this.timetableMasters) {
+      this.timetableMasters = this.timetableMasters.filter(tm => tm.sectionId !== id);
+    }
+    this.timetables = this.timetables.filter(t => t.sectionId !== id);
+    return true;
   }
 
   // Subjects
@@ -700,6 +807,89 @@ class DatabaseStore {
 
   // Timetables
   getTimetables() { return this.timetables; }
+  getTimetableMasters() { return this.timetableMasters; }
+  getTimetableMasterById(id) { return this.timetableMasters.find(t => t.id === id); }
+  findTimetableMaster(classId, sectionId, academicYearId, termId) {
+    return this.timetableMasters.find(t => {
+      const matchClass = !classId || t.classId === classId;
+      const matchSection = !sectionId || t.sectionId === sectionId;
+      const matchYear = !academicYearId || t.academicYearId === academicYearId;
+      const matchTerm = !termId || t.termId === termId;
+      return matchClass && matchSection && matchYear && matchTerm;
+    });
+  }
+
+  saveTimetableMaster(data) {
+    const now = new Date().toISOString();
+    let master;
+    
+    let existingIndex = -1;
+    if (data.id && data.id !== 'undefined') {
+      existingIndex = this.timetableMasters.findIndex(t => t.id === data.id);
+    }
+    if (existingIndex === -1 && data.classId && data.sectionId) {
+      existingIndex = this.timetableMasters.findIndex(t => 
+        t.classId === data.classId && 
+        t.sectionId === data.sectionId && 
+        t.academicYearId === (data.academicYearId || 'AY-2025') && 
+        t.termId === (data.termId || 'TRM-01')
+      );
+    }
+
+    if (existingIndex >= 0) {
+      master = {
+        ...this.timetableMasters[existingIndex],
+        ...data,
+        id: this.timetableMasters[existingIndex].id,
+        updatedAt: now,
+        periods: (data.periods && data.periods.length > 0) ? data.periods : (this.timetableMasters[existingIndex].periods || defaultPeriods),
+        entries: Array.isArray(data.entries) ? data.entries : (this.timetableMasters[existingIndex].entries || [])
+      };
+      this.timetableMasters[existingIndex] = master;
+    } else {
+      const generatedId = (data.id && data.id !== 'undefined') ? data.id : `TTM-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+      master = {
+        ...data,
+        id: generatedId,
+        status: data.status || 'Draft',
+        createdAt: now,
+        updatedAt: now,
+        periods: (data.periods && data.periods.length > 0) ? data.periods : defaultPeriods,
+        entries: Array.isArray(data.entries) ? data.entries : []
+      };
+      this.timetableMasters.push(master);
+    }
+
+    // Synchronize flat timetables collection
+    // Remove existing slots belonging to this timetable master
+    this.timetables = this.timetables.filter(t => t.timetableId !== master.id && !(t.sectionId && t.sectionId === master.sectionId && t.academicYearId === master.academicYearId && t.termId === master.termId));
+
+    // Add updated slots
+    if (Array.isArray(master.entries)) {
+      master.entries.forEach(entry => {
+        const slot = {
+          ...entry,
+          id: entry.id || `TT-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+          timetableId: master.id,
+          classId: master.classId,
+          sectionId: master.sectionId,
+          academicYearId: master.academicYearId,
+          termId: master.termId,
+          status: master.status
+        };
+        this.timetables.push(slot);
+      });
+    }
+
+    return master;
+  }
+
+  deleteTimetableMaster(id) {
+    this.timetableMasters = this.timetableMasters.filter(t => t.id !== id);
+    this.timetables = this.timetables.filter(t => t.timetableId !== id);
+    return true;
+  }
+
   addTimetable(slot) {
     const newSlot = { id: `TT-${Date.now()}`, ...slot };
     this.timetables.push(newSlot);

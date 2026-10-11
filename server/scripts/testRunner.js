@@ -77,6 +77,12 @@ const runTests = async () => {
   passed += auditRes.passed;
   failed += auditRes.failed;
 
+  // Run the 17-Test Timetable Management Suite
+  const { runTimetableTestSuite } = await import('./testTimetableSuite.js');
+  const timetableRes = await runTimetableTestSuite();
+  passed += timetableRes.passed;
+  failed += timetableRes.failed;
+
   // Summary
   console.log('\n======================================================');
   console.log(`📊 COMPLETE TEST SUITE SUMMARY: ${passed} PASSED, ${failed} FAILED`);

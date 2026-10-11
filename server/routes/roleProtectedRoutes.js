@@ -241,9 +241,61 @@ teacherRouter.post('/grades', (req, res) => {
 });
 
 teacherRouter.get('/schedule', (req, res) => {
-  const { teacher, assignedClassIds } = getTeacherContext(req);
-  const timetable = db.getTimetables().filter(t => t.teacherId === teacher.id || assignedClassIds.includes(t.classId));
-  res.status(200).json({ success: true, timetable });
+  const { teacher } = getTeacherContext(req);
+  const allMasters = db.getTimetableMasters ? db.getTimetableMasters() : [];
+  const scheduleSlots = [];
+
+  allMasters.forEach((tm) => {
+    if (Array.isArray(tm.entries)) {
+      tm.entries.forEach((entry) => {
+        const isAssigned = (entry.teacherId && entry.teacherId === teacher.id) ||
+          (entry.teacherName && teacher.name && entry.teacherName.trim().toLowerCase() === teacher.name.trim().toLowerCase());
+        if (isAssigned) {
+          const cls = db.getClasses().find((c) => c.id === tm.classId);
+          const sec = db.getSections().find((s) => s.id === tm.sectionId);
+          const sub = db.getSubjects().find((s) => s.id === entry.subjectId);
+          scheduleSlots.push({
+            ...entry,
+            timetableId: tm.id,
+            classId: tm.classId,
+            className: cls ? cls.title : tm.classId,
+            classCode: cls ? cls.code : '',
+            sectionId: tm.sectionId,
+            sectionName: sec ? sec.title : (tm.sectionId || ''),
+            subjectCode: entry.subjectCode || (sub ? sub.code : ''),
+            subjectTitle: entry.subjectTitle || (sub ? sub.title : ''),
+            academicYearId: tm.academicYearId,
+            termId: tm.termId,
+            status: tm.status
+          });
+        }
+      });
+    }
+  });
+
+  db.getTimetables().forEach((slot) => {
+    const isAssigned = (slot.teacherId && slot.teacherId === teacher.id) ||
+      (slot.teacherName && teacher.name && slot.teacherName.trim().toLowerCase() === teacher.name.trim().toLowerCase());
+    if (isAssigned && !scheduleSlots.some((s) => s.id === slot.id)) {
+      const cls = db.getClasses().find((c) => c.id === slot.classId);
+      const sec = db.getSections().find((s) => s.id === slot.sectionId);
+      scheduleSlots.push({
+        ...slot,
+        className: cls ? cls.title : slot.classId,
+        sectionName: sec ? sec.title : (slot.sectionId || '')
+      });
+    }
+  });
+
+  const dayOrder = { Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6, Sunday: 7 };
+  scheduleSlots.sort((a, b) => (dayOrder[a.day] || 99) - (dayOrder[b.day] || 99) || (a.period || 0) - (b.period || 0));
+
+  res.status(200).json({
+    success: true,
+    teacher,
+    timetable: scheduleSlots,
+    totalAssignedHours: scheduleSlots.length
+  });
 });
 
 teacherRouter.get('/messages', (req, res) => {
@@ -404,8 +456,57 @@ studentRouter.get('/attendance', (req, res) => {
 
 studentRouter.get('/schedule', (req, res) => {
   const { student } = getStudentContext(req);
-  const timetable = db.getTimetables().filter(t => !t.classId || t.classId === student.classId);
-  res.status(200).json({ success: true, timetable });
+  const cls = db.getClasses().find((c) => c.id === student.classId);
+  const sec = db.getSections().find((s) => s.id === student.sectionId);
+
+  const allMasters = db.getTimetableMasters ? db.getTimetableMasters() : [];
+  const publishedMaster = allMasters.find((tm) => {
+    const matchSection = student.sectionId ? tm.sectionId === student.sectionId : true;
+    const matchClass = student.classId ? tm.classId === student.classId : true;
+    return matchSection && matchClass && tm.status === 'Published';
+  });
+
+  const academicProfile = db.getSchoolProfile();
+
+  if (!publishedMaster) {
+    return res.status(200).json({
+      success: true,
+      isPublished: false,
+      timetable: null,
+      entries: [],
+      studentInfo: {
+        id: student.id,
+        name: student.name,
+        admissionNo: student.studentId || student.admissionNo,
+        classId: student.classId,
+        className: cls ? cls.title : (student.grade || 'Senior'),
+        sectionId: student.sectionId,
+        sectionName: sec ? sec.title : 'General Section',
+        academicYear: academicProfile.activeAcademicYear,
+        term: academicProfile.activeTerm
+      },
+      message: 'No published timetable is currently available for your section.'
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    isPublished: true,
+    timetable: publishedMaster,
+    entries: publishedMaster.entries || [],
+    periods: publishedMaster.periods || [],
+    studentInfo: {
+      id: student.id,
+      name: student.name,
+      admissionNo: student.studentId || student.admissionNo,
+      classId: student.classId,
+      className: cls ? cls.title : (student.grade || 'Senior'),
+      sectionId: student.sectionId,
+      sectionName: sec ? sec.title : 'General Section',
+      academicYear: publishedMaster.academicYearId,
+      term: publishedMaster.termId
+    }
+  });
 });
 
 studentRouter.get('/messages', (req, res) => {
@@ -547,10 +648,60 @@ parentRouter.get('/assignments', (req, res) => {
 });
 
 parentRouter.get('/schedule', (req, res) => {
-  const { children } = getParentContext(req);
-  const classIds = children.map(c => c.classId);
-  const timetables = db.getTimetables().filter(t => classIds.includes(t.classId));
-  res.status(200).json({ success: true, timetables });
+  const { parent, children, linkedStudentIds } = getParentContext(req);
+  const targetStudentId = req.query.studentId || linkedStudentIds[0];
+
+  const isLinked = linkedStudentIds.includes(targetStudentId) || children.some((c) => c.id === targetStudentId || c.studentId === targetStudentId);
+  if (!isLinked) {
+    return res.status(403).json({
+      success: false,
+      message: 'You are not authorized to view the timetable for this student.'
+    });
+  }
+
+  const targetStudent = children.find((c) => c.id === targetStudentId || c.studentId === targetStudentId) || db.getStudents().find((s) => s.id === targetStudentId);
+  if (!targetStudent) {
+    return res.status(404).json({ success: false, message: 'Student record not found.' });
+  }
+
+  const cls = db.getClasses().find((c) => c.id === targetStudent.classId);
+  const sec = db.getSections().find((s) => s.id === targetStudent.sectionId);
+
+  const allMasters = db.getTimetableMasters ? db.getTimetableMasters() : [];
+  const publishedMaster = allMasters.find((tm) => {
+    const matchSection = targetStudent.sectionId ? tm.sectionId === targetStudent.sectionId : true;
+    const matchClass = targetStudent.classId ? tm.classId === targetStudent.classId : true;
+    return matchSection && matchClass && tm.status === 'Published';
+  });
+
+  const academicProfile = db.getSchoolProfile();
+
+  res.status(200).json({
+    success: true,
+    isPublished: !!publishedMaster,
+    timetable: publishedMaster || null,
+    entries: publishedMaster?.entries || [],
+    periods: publishedMaster?.periods || [],
+    children: children.map((c) => ({
+      id: c.id,
+      name: c.name,
+      studentId: c.studentId,
+      classId: c.classId,
+      sectionId: c.sectionId
+    })),
+    selectedChild: {
+      id: targetStudent.id,
+      name: targetStudent.name,
+      admissionNo: targetStudent.studentId || targetStudent.admissionNo,
+      classId: targetStudent.classId,
+      className: cls ? cls.title : targetStudent.classId,
+      sectionId: targetStudent.sectionId,
+      sectionName: sec ? sec.title : 'General Section',
+      academicYear: publishedMaster?.academicYearId || academicProfile.activeAcademicYear,
+      term: publishedMaster?.termId || academicProfile.activeTerm
+    },
+    message: publishedMaster ? 'Published timetable retrieved.' : 'No published timetable is currently available for this student.'
+  });
 });
 
 parentRouter.get('/messages', (req, res) => {

@@ -6,8 +6,14 @@ const router = express.Router();
 
 // Timetables
 router.get('/timetables', authenticateToken, academicController.getTimetables);
-router.post('/timetables', authenticateToken, requireRole(['Admin', 'Teacher']), academicController.addTimetableSlot);
-router.delete('/timetables/:id', authenticateToken, requireRole(['Admin']), academicController.deleteTimetableSlot);
+router.get('/timetables/section/:sectionId', authenticateToken, academicController.getTimetableBySection);
+router.get('/timetables/:id', authenticateToken, academicController.getTimetableById);
+router.post('/timetables/save', authenticateToken, requireRole(['Admin']), academicController.saveTimetable);
+router.post('/timetables/validate', authenticateToken, requireRole(['Admin']), academicController.validateTimetableEntries);
+router.post('/timetables/:id/publish', authenticateToken, requireRole(['Admin']), academicController.publishTimetable);
+router.post('/timetables', authenticateToken, requireRole(['Admin', 'Teacher']), academicController.saveTimetable);
+router.put('/timetables/:id', authenticateToken, requireRole(['Admin']), academicController.saveTimetable);
+router.delete('/timetables/:id', authenticateToken, requireRole(['Admin']), academicController.deleteTimetable);
 
 // Attendance
 router.get('/attendance', authenticateToken, academicController.getAttendanceRecords);

@@ -18,6 +18,11 @@ router.post('/classes', authenticateToken, requireRole(['Admin']), schoolControl
 router.put('/classes/:id', authenticateToken, requireRole(['Admin']), schoolController.updateClass);
 router.delete('/classes/:id', authenticateToken, requireRole(['Admin']), schoolController.deleteClass);
 
+router.get('/sections', schoolController.getSections);
+router.post('/sections', authenticateToken, requireRole(['Admin']), schoolController.addSection);
+router.put('/sections/:id', authenticateToken, requireRole(['Admin']), schoolController.updateSection);
+router.delete('/sections/:id', authenticateToken, requireRole(['Admin']), schoolController.deleteSection);
+
 // Subjects
 router.get('/subjects', schoolController.getSubjects);
 router.post('/subjects', authenticateToken, requireRole(['Admin']), schoolController.addSubject);
