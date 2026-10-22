@@ -12,14 +12,13 @@ import {
   Settings, 
   Bell, 
   Calendar,
-  LogOut,
   MessageSquare,
   User
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 export const Sidebar = () => {
-  const { user, currentPath, navigate, logout } = useAuth();
+  const { user, currentPath, navigate } = useAuth();
   const role = (user?.role || '').toUpperCase();
 
   // Role-aware navigation definitions matching specifications
@@ -151,31 +150,6 @@ export const Sidebar = () => {
           );
         })}
       </nav>
-
-      {/* Sign Out Action */}
-      <div style={{ paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-        <button
-          onClick={logout}
-          style={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            padding: '0.75rem 0.875rem',
-            borderRadius: '8px',
-            background: 'none',
-            border: 'none',
-            color: '#ef4444',
-            fontSize: '0.875rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            textAlign: 'left'
-          }}
-        >
-          <LogOut size={18} />
-          <span>Sign Out</span>
-        </button>
-      </div>
     </aside>
   );
 };

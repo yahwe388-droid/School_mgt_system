@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "server": "node server/index.js",
+    "backend": "node server/index.js",
+    "dev:server": "node server/index.js",
     "dev:all": "node server/index.js & vite",
     "test": "node server/scripts/testRunner.js",
     "db:reset": "node server/scripts/seedReset.js",

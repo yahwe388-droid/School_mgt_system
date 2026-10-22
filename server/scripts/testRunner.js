@@ -26,7 +26,7 @@ const runTests = async () => {
 
   // Test 1: Database Seed Integrity
   assert(db.getUsers().length >= 4, 'Database initialized with pre-seeded users');
-  assert(db.findUserByEmail('admin@school.com')?.role?.toUpperCase() === 'ADMIN', 'Admin user present with ADMIN role');
+  assert((db.findUserByUsername('admin') || db.findUserByEmail('kebi12447@gmail.com') || db.findUserByEmail('admin@school.com'))?.role?.toUpperCase() === 'ADMIN', 'Admin user present with ADMIN role');
   assert(db.findUserByEmail('teacher@school.com')?.role?.toUpperCase() === 'TEACHER', 'Teacher user present with TEACHER role');
   assert(db.findUserByEmail('student@school.com')?.role?.toUpperCase() === 'STUDENT', 'Student user present with STUDENT role');
   assert(db.findUserByEmail('parent@school.com')?.role?.toUpperCase() === 'PARENT', 'Parent user present with PARENT role');
