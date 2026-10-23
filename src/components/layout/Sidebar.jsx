@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
-export const Sidebar = () => {
+export const Sidebar = ({ isOpen, onClose }) => {
   const { user, currentPath, navigate } = useAuth();
   const role = (user?.role || '').toUpperCase();
 
@@ -74,17 +74,14 @@ export const Sidebar = () => {
 
   const navItems = getNavItems();
 
+  const handleNavClick = (path) => {
+    navigate(path);
+    // Close drawer on mobile after navigation
+    if (onClose) onClose();
+  };
+
   return (
-    <aside style={{
-      width: '260px',
-      backgroundColor: 'var(--bg-sidebar)',
-      color: 'var(--text-sidebar)',
-      display: 'flex',
-      flexDirection: 'column',
-      padding: '1.5rem 1rem',
-      flexShrink: 0,
-      borderRight: '1px solid rgba(255,255,255,0.05)'
-    }}>
+    <aside className={`app-sidebar${isOpen ? ' sidebar-open' : ''}`}>
       {/* Brand Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0 0.5rem 2rem 0.5rem' }}>
         <div style={{
@@ -128,7 +125,7 @@ export const Sidebar = () => {
           return (
             <div
               key={item.label}
-              onClick={() => navigate(item.path)}
+              onClick={() => handleNavClick(item.path)}
               style={{
                 display: 'flex',
                 alignItems: 'center',
