@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
+import { Footer } from './Footer';
 
 export const AppShell = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -36,6 +37,7 @@ export const AppShell = ({ children }) => {
         <main className="content-area">
           {children}
         </main>
+        <Footer />
       </div>
     </div>
   );
