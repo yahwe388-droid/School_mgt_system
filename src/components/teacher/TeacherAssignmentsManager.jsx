@@ -124,7 +124,7 @@ export const TeacherAssignmentsManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <BookOpen size={24} color="#38bdf8" /> Coursework & Assignment Management
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -162,7 +162,7 @@ export const TeacherAssignmentsManager = () => {
                   <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#38bdf8', textTransform: 'uppercase' }}>
                     {asn.subjectCode || 'Coursework'} • {asn.classId}
                   </span>
-                  <h3 style={{ fontSize: '1.1rem', color: '#ffffff', fontWeight: '700', marginTop: '0.25rem' }}>
+                  <h3 style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '700', marginTop: '0.25rem' }}>
                     {asn.title}
                   </h3>
                 </div>
@@ -311,10 +311,10 @@ export const TeacherAssignmentsManager = () => {
             </div>
           ) : (
             selectedAssignment.submissions.map(sub => (
-              <div key={sub.id} style={{ padding: '1rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div key={sub.id} style={{ padding: '1rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-color)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                   <div>
-                    <strong style={{ color: '#ffffff' }}>{sub.studentName}</strong>
+                    <strong style={{ color: 'var(--text-main)' }}>{sub.studentName}</strong>
                     <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginLeft: '0.5rem' }}>
                       ({new Date(sub.submittedAt).toLocaleDateString()})
                     </span>

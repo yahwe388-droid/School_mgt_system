@@ -76,7 +76,7 @@ export const TeacherProfileManager = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '900px' }}>
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+        <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
           <User size={24} color="#38bdf8" /> Faculty Staff Profile & Academic Credentials
         </h2>
         <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -107,7 +107,7 @@ export const TeacherProfileManager = () => {
               {(user?.name || 'T')[0].toUpperCase()}
             </div>
             <div>
-              <h3 style={{ fontSize: '1.125rem', color: '#ffffff', fontWeight: '600' }}>{user?.name}</h3>
+              <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', fontWeight: '600' }}>{user?.name}</h3>
               <span style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -126,23 +126,23 @@ export const TeacherProfileManager = () => {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.875rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid var(--border-color)' }}>
               <span style={{ color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Briefcase size={15} /> System Staff ID
               </span>
-              <span style={{ color: '#ffffff', fontWeight: '600', fontFamily: 'monospace' }}>
+              <span style={{ color: 'var(--text-main)', fontWeight: '600', fontFamily: 'monospace' }}>
                 {profile?.teacher?.id || `TCH-${user?.id}`}
               </span>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid var(--border-color)' }}>
               <span style={{ color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Mail size={15} /> Institutional Email
               </span>
-              <span style={{ color: '#ffffff' }}>{user?.email || 'faculty@educore.edu'}</span>
+              <span style={{ color: 'var(--text-main)' }}>{user?.email || 'faculty@educore.edu'}</span>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid var(--border-color)' }}>
               <span style={{ color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Shield size={15} /> Assigned Role
               </span>
@@ -160,7 +160,7 @@ export const TeacherProfileManager = () => {
 
         {/* Edit Details Card */}
         <div className="glass-card" style={{ padding: '1.75rem' }}>
-          <h3 style={{ fontSize: '1.0625rem', color: '#ffffff', fontWeight: '600', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 style={{ fontSize: '1.0625rem', color: 'var(--text-main)', fontWeight: '600', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Award size={18} color="#38bdf8" /> Faculty Details & Contact
           </h3>
 

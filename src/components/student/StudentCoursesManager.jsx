@@ -54,7 +54,7 @@ export const StudentCoursesManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <BookOpen size={24} color="#10b981" /> Enrolled Academic Courses
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -81,7 +81,7 @@ export const StudentCoursesManager = () => {
       {filteredCourses.length === 0 ? (
         <div className="glass-card" style={{ padding: '3rem 2rem', textAlign: 'center', color: '#94a3b8' }}>
           <BookOpen size={48} style={{ opacity: 0.3, margin: '0 auto 1rem auto' }} />
-          <h3 style={{ fontSize: '1.125rem', color: '#ffffff', marginBottom: '0.5rem' }}>No Courses Found</h3>
+          <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>No Courses Found</h3>
           <p style={{ fontSize: '0.875rem' }}>You are not registered in any matching course curriculum for this semester.</p>
         </div>
       ) : (
@@ -93,7 +93,7 @@ export const StudentCoursesManager = () => {
                   <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#10b981', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                     {course.code || 'CRS-01'}
                   </span>
-                  <h3 style={{ fontSize: '1.125rem', color: '#ffffff', fontWeight: '600', marginTop: '0.2rem' }}>
+                  <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', fontWeight: '600', marginTop: '0.2rem' }}>
                     {course.name}
                   </h3>
                 </div>
@@ -105,11 +105,11 @@ export const StudentCoursesManager = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', fontSize: '0.8125rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94a3b8' }}>
                   <User size={15} color="#38bdf8" />
-                  <span>Instructor: <strong style={{ color: '#e2e8f0' }}>{course.teacherName || 'Faculty Instructor'}</strong></span>
+                  <span>Instructor: <strong style={{ color: 'var(--text-main)' }}>{course.teacherName || 'Faculty Instructor'}</strong></span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94a3b8' }}>
                   <Clock size={15} color="#fbbf24" />
-                  <span>Schedule: <strong style={{ color: '#e2e8f0' }}>{course.schedule || 'Weekly Lectures'}</strong></span>
+                  <span>Schedule: <strong style={{ color: 'var(--text-main)' }}>{course.schedule || 'Weekly Lectures'}</strong></span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94a3b8' }}>
                   <CheckCircle2 size={15} color="#10b981" />
@@ -154,7 +154,7 @@ export const StudentCoursesManager = () => {
                 <BookOpen size={24} />
               </div>
               <div>
-                <div style={{ fontSize: '1.125rem', fontWeight: '700', color: '#ffffff' }}>{selectedCourse.name}</div>
+                <div style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-main)' }}>{selectedCourse.name}</div>
                 <div style={{ fontSize: '0.8125rem', color: '#10b981', fontWeight: '600' }}>{selectedCourse.code} • {selectedCourse.department || 'Academic Department'}</div>
               </div>
             </div>
@@ -162,15 +162,15 @@ export const StudentCoursesManager = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.875rem' }}>
               <div style={{ backgroundColor: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '8px' }}>
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block', marginBottom: '0.25rem' }}>Faculty Instructor</span>
-                <strong style={{ color: '#ffffff' }}>{selectedCourse.teacherName || 'Faculty Instructor'}</strong>
+                <strong style={{ color: 'var(--text-main)' }}>{selectedCourse.teacherName || 'Faculty Instructor'}</strong>
               </div>
               <div style={{ backgroundColor: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '8px' }}>
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block', marginBottom: '0.25rem' }}>Academic Credits</span>
-                <strong style={{ color: '#ffffff' }}>{selectedCourse.credits || 3} Credit Units</strong>
+                <strong style={{ color: 'var(--text-main)' }}>{selectedCourse.credits || 3} Credit Units</strong>
               </div>
               <div style={{ backgroundColor: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '8px', gridColumn: '1 / -1' }}>
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block', marginBottom: '0.25rem' }}>Class Lecture Schedule</span>
-                <strong style={{ color: '#ffffff' }}>{selectedCourse.schedule || 'Scheduled via Central Registrar'}</strong>
+                <strong style={{ color: 'var(--text-main)' }}>{selectedCourse.schedule || 'Scheduled via Central Registrar'}</strong>
               </div>
             </div>
 

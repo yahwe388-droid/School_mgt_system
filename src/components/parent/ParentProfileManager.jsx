@@ -76,7 +76,7 @@ export const ParentProfileManager = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '900px' }}>
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+        <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
           <HeartHandshake size={24} color="#f59e0b" /> Parent & Guardian Profile
         </h2>
         <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -107,7 +107,7 @@ export const ParentProfileManager = () => {
               {(user?.name || 'P')[0].toUpperCase()}
             </div>
             <div>
-              <h3 style={{ fontSize: '1.125rem', color: '#ffffff', fontWeight: '600' }}>{user?.name}</h3>
+              <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', fontWeight: '600' }}>{user?.name}</h3>
               <span style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -126,21 +126,21 @@ export const ParentProfileManager = () => {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.875rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid var(--border-color)' }}>
               <span style={{ color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Mail size={15} /> Registered Email
               </span>
-              <span style={{ color: '#ffffff' }}>{user?.email || 'parent@educore.edu'}</span>
+              <span style={{ color: 'var(--text-main)' }}>{user?.email || 'parent@educore.edu'}</span>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.6rem 0', borderBottom: '1px solid var(--border-color)' }}>
               <span style={{ color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Lock size={15} /> System Role
               </span>
               <span style={{ color: '#f59e0b', fontWeight: '600' }}>PARENT (Read-Only Authorization)</span>
             </div>
 
-            <div style={{ padding: '0.6rem 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+            <div style={{ padding: '0.6rem 0', borderBottom: '1px solid var(--border-color)' }}>
               <span style={{ color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                 <GraduationCap size={15} /> Linked Dependents ({children.length})
               </span>
@@ -149,7 +149,7 @@ export const ParentProfileManager = () => {
                   <span key={c.id} style={{
                     fontSize: '0.75rem',
                     backgroundColor: 'rgba(255,255,255,0.05)',
-                    color: '#e2e8f0',
+                    color: 'var(--text-main)',
                     padding: '0.25rem 0.6rem',
                     borderRadius: '4px',
                     border: '1px solid rgba(255,255,255,0.1)'
@@ -171,7 +171,7 @@ export const ParentProfileManager = () => {
 
         {/* Edit Contact Details Card */}
         <div className="glass-card" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <h3 style={{ fontSize: '1.0625rem', color: '#ffffff', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 style={{ fontSize: '1.0625rem', color: 'var(--text-main)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <User size={18} color="#f59e0b" /> Contact Information
           </h3>
 

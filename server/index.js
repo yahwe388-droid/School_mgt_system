@@ -21,9 +21,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const serverStartTime = Date.now();
 
+// Trust reverse proxy (e.g. Render, Cloudflare, Nginx, AWS ELB)
+app.set('trust proxy', 1);
+
 // Security & Logging Middleware
 app.use(securityHeaders);
-app.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 200 })); // General Rate Limit 200 req / 15 mins
+const maxReq = parseInt(process.env.RATE_LIMIT_MAX, 10) || 2000;
+app.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: maxReq })); // High-throughput scalable rate limit
 
 // Dedicated failed-login brute-force rate limiter (10 failed attempts per 15 mins)
 const loginFailureLimiter = authFailureRateLimiter({ windowMs: 15 * 60 * 1000, maxFailures: 10 });
@@ -72,10 +76,10 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Serve static frontend files when built (e.g. in production)
+// Serve static frontend files with production cache headers
 const distPath = path.resolve(__dirname, '../dist');
 if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, { maxAge: '1d', etag: true }));
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api')) {
       return next();
@@ -90,6 +94,23 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal Server Error', error: err.message });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   logger.info(`Production Server running on http://localhost:${PORT}`);
 });
+
+// Graceful shutdown handling for container and process orchestrators
+const handleGracefulShutdown = (signal) => {
+  logger.info(`Received ${signal}. Initiating graceful connection teardown...`);
+  server.close(() => {
+    logger.info('HTTP server closed cleanly. Exiting process.');
+    process.exit(0);
+  });
+  // Force exit after 10 seconds if lingering connections exist
+  setTimeout(() => {
+    logger.error('Graceful shutdown timeout exceeded. Forcing shutdown.');
+    process.exit(1);
+  }, 10000).unref();
+};
+
+process.on('SIGTERM', () => handleGracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => handleGracefulShutdown('SIGINT'));

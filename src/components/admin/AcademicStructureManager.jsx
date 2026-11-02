@@ -208,7 +208,7 @@ export const AcademicStructureManager = () => {
       {/* Header and Tab Bar */}
       <div className="glass-card" style={{ padding: '1.25rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <Layers size={22} color="var(--primary)" /> Academic Structure & Organization
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -249,7 +249,7 @@ export const AcademicStructureManager = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: '#ffffff' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--text-main)' }}>
                 Class Sections (Grade 9A, 9B, 10A, 11A, 12A...)
               </h3>
               <p style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
@@ -292,7 +292,7 @@ export const AcademicStructureManager = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: '#ffffff' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--text-main)' }}>
                 Grade Levels & Cohorts (Grade 9 - Grade 12)
               </h3>
               <p style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
@@ -325,7 +325,7 @@ export const AcademicStructureManager = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: '#ffffff' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--text-main)' }}>
                 Subject Catalog & Course Directory
               </h3>
               <p style={{ fontSize: '0.75rem', color: '#94a3b8' }}>

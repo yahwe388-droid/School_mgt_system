@@ -57,7 +57,7 @@ export const StudentAttendanceManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <CalendarCheck size={24} color="#10b981" /> Attendance Record & Compliance
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -91,7 +91,7 @@ export const StudentAttendanceManager = () => {
               <CheckCircle2 size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {stats.percentage}%
           </div>
           <div style={{ fontSize: '0.75rem', color: stats.percentage >= 80 ? '#34d399' : '#f87171', marginTop: '0.25rem', fontWeight: '600' }}>
@@ -106,7 +106,7 @@ export const StudentAttendanceManager = () => {
               <CalendarCheck size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {stats.present}
           </div>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -121,7 +121,7 @@ export const StudentAttendanceManager = () => {
               <AlertTriangle size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {stats.late}
           </div>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -136,7 +136,7 @@ export const StudentAttendanceManager = () => {
               <XCircle size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {stats.absent}
           </div>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -147,20 +147,20 @@ export const StudentAttendanceManager = () => {
 
       {/* Attendance History Log */}
       <div className="glass-card" style={{ padding: '1.5rem', overflowX: 'auto' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', marginBottom: '1.25rem' }}>
+        <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '1.25rem' }}>
           Session Attendance Log
         </h3>
 
         {filteredAttendance.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
             <CalendarCheck size={48} style={{ opacity: 0.3, margin: '0 auto 1rem auto' }} />
-            <div style={{ color: '#ffffff', fontWeight: '600', marginBottom: '0.25rem' }}>No Attendance Records Found</div>
+            <div style={{ color: 'var(--text-main)', fontWeight: '600', marginBottom: '0.25rem' }}>No Attendance Records Found</div>
             <p style={{ fontSize: '0.8125rem' }}>Classroom roll-call records for your selected filter will appear here.</p>
           </div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.875rem' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#94a3b8' }}>
+              <tr style={{ borderBottom: '1px solid var(--border-color)', color: '#94a3b8' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Date</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Class / Subject</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Attendance Status</th>
@@ -174,11 +174,11 @@ export const StudentAttendanceManager = () => {
                   <tr
                     key={rec.id || idx}
                     style={{
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                      borderBottom: '1px solid var(--border-color)',
                       backgroundColor: idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.015)'
                     }}
                   >
-                    <td style={{ padding: '1rem', color: '#ffffff', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <td style={{ padding: '1rem', color: 'var(--text-main)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Calendar size={15} color="#94a3b8" />
                       {rec.date}
                     </td>

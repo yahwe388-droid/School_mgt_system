@@ -132,11 +132,11 @@ export const StudentDashboard = () => {
                 <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: '#10b981', letterSpacing: '0.08em' }}>
                   STUDENT LEARNING PORTAL
                 </span>
-                <h1 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#ffffff', marginTop: '0.25rem' }}>
+                <h1 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--text-main)', marginTop: '0.25rem' }}>
                   Welcome, {user?.name}
                 </h1>
-                <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.35rem' }}>
-                  Student ID: <strong style={{ color: '#e2e8f0', fontFamily: 'monospace' }}>{dashboardData?.student?.studentId || user?.studentId || 'STU-1001'}</strong> • Class: <strong style={{ color: '#e2e8f0' }}>{dashboardData?.student?.classId || 'Class 12'}</strong>
+                <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
+                  Student ID: <strong style={{ color: 'var(--text-main)', fontFamily: 'monospace' }}>{dashboardData?.student?.studentId || user?.studentId || 'STU-1001'}</strong> • Class: <strong style={{ color: 'var(--text-main)' }}>{dashboardData?.student?.classId || 'Class 12'}</strong>
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -161,27 +161,27 @@ export const StudentDashboard = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Enrolled Courses</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Enrolled Courses</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>
                     <BookOpen size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.coursesCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Active subjects this semester
                 </div>
               </div>
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Attendance Rate</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Attendance Rate</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8' }}>
                     <CalendarCheck size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.attendancePercentage}%
                 </div>
                 <div style={{ fontSize: '0.75rem', color: '#38bdf8', marginTop: '0.25rem' }}>
@@ -191,30 +191,30 @@ export const StudentDashboard = () => {
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Pending Homework</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Pending Homework</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>
                     <Clock size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.assignmentsCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Published tasks for your class
                 </div>
               </div>
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Overall Average</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Overall Average</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(168, 85, 247, 0.15)', color: '#c084fc' }}>
                     <TrendingUp size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.averageGrade}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Recorded exam average
                 </div>
               </div>
@@ -225,7 +225,7 @@ export const StudentDashboard = () => {
               {/* Upcoming Assignments */}
               <div className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <BookOpen size={18} color="#10b981" /> Course Assignments
                   </h3>
                   <button 
@@ -245,15 +245,15 @@ export const StudentDashboard = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         padding: '0.75rem 1rem',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        backgroundColor: 'var(--border-light)',
                         borderRadius: '8px',
                         borderLeft: '3px solid #10b981'
                       }}>
                         <div>
-                          <div style={{ color: '#ffffff', fontWeight: '600', fontSize: '0.875rem' }}>
+                          <div style={{ color: 'var(--text-main)', fontWeight: '600', fontSize: '0.875rem' }}>
                             {asn.title}
                           </div>
-                          <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.15rem' }}>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
                             Due: {asn.dueDate || 'Soon'} • Points: {asn.totalPoints || 100}
                           </div>
                         </div>
@@ -268,7 +268,7 @@ export const StudentDashboard = () => {
                     ))}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                     No pending homework assignments found.
                   </div>
                 )}
@@ -277,7 +277,7 @@ export const StudentDashboard = () => {
               {/* Recent Examination Results */}
               <div className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <Award size={18} color="#fbbf24" /> Recent Exam Marks
                   </h3>
                   <button 
@@ -297,15 +297,15 @@ export const StudentDashboard = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         padding: '0.75rem 1rem',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        backgroundColor: 'var(--border-light)',
                         borderRadius: '8px',
                         borderLeft: '3px solid #fbbf24'
                       }}>
                         <div>
-                          <div style={{ color: '#ffffff', fontWeight: '600', fontSize: '0.875rem' }}>
+                          <div style={{ color: 'var(--text-main)', fontWeight: '600', fontSize: '0.875rem' }}>
                             {grade.subjectCode || 'GEN-101'}
                           </div>
-                          <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.15rem' }}>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
                             Marks: {grade.marksObtained} / {grade.totalMarks || 100}
                           </div>
                         </div>
@@ -323,7 +323,7 @@ export const StudentDashboard = () => {
                     ))}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                     No recent test scores recorded yet.
                   </div>
                 )}

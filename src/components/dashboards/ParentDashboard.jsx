@@ -136,11 +136,11 @@ export const ParentDashboard = () => {
                 <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: '#fbbf24', letterSpacing: '0.08em' }}>
                   PARENT & GUARDIAN MONITORING PORTAL
                 </span>
-                <h1 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#ffffff', marginTop: '0.25rem' }}>
+                <h1 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--text-main)', marginTop: '0.25rem' }}>
                   Welcome, {user?.name}
                 </h1>
-                <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.35rem' }}>
-                  Monitoring Dependents: <strong style={{ color: '#e2e8f0' }}>{children.map(c => c.name).join(', ') || 'Alex Morgan'}</strong> • Read-Only Security Mode Active
+                <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
+                  Monitoring Dependents: <strong style={{ color: 'var(--text-main)' }}>{children.map(c => c.name).join(', ') || 'Alex Morgan'}</strong> • Read-Only Security Mode Active
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -165,27 +165,27 @@ export const ParentDashboard = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Linked Children</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Linked Children</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>
                     <HeartHandshake size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.childrenCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Enrolled student wards
                 </div>
               </div>
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Recorded Grades</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Recorded Grades</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>
                     <Award size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.recentGradesCount}
                 </div>
                 <div style={{ fontSize: '0.75rem', color: '#34d399', marginTop: '0.25rem' }}>
@@ -195,30 +195,30 @@ export const ParentDashboard = () => {
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Active Assignments</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Active Assignments</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8' }}>
                     <BookOpen size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.upcomingAssignmentsCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Coursework tasks assigned
                 </div>
               </div>
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Unread Inquiries</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Unread Inquiries</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(168, 85, 247, 0.15)', color: '#c084fc' }}>
                     <MessageSquare size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.unreadMessagesCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Faculty & admin communications
                 </div>
               </div>
@@ -229,7 +229,7 @@ export const ParentDashboard = () => {
               {/* Recent Grades Preview */}
               <div className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <Award size={18} color="#f59e0b" /> Recent Child Assessment Scores
                   </h3>
                   <button 
@@ -249,15 +249,15 @@ export const ParentDashboard = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         padding: '0.75rem 1rem',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        backgroundColor: 'var(--border-light)',
                         borderRadius: '8px',
                         borderLeft: '3px solid #f59e0b'
                       }}>
                         <div>
-                          <div style={{ color: '#ffffff', fontWeight: '600', fontSize: '0.875rem' }}>
+                          <div style={{ color: 'var(--text-main)', fontWeight: '600', fontSize: '0.875rem' }}>
                             {grade.subjectCode || 'GEN-101'}
                           </div>
-                          <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.15rem' }}>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
                             Marks: {grade.marksObtained} / {grade.totalMarks || 100} ({grade.percentage}%)
                           </div>
                         </div>
@@ -275,7 +275,7 @@ export const ParentDashboard = () => {
                     ))}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                     No recent test scores recorded for your linked dependents.
                   </div>
                 )}
@@ -284,7 +284,7 @@ export const ParentDashboard = () => {
               {/* Child Homework Preview */}
               <div className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <BookOpen size={18} color="#38bdf8" /> Upcoming Homework Tasks
                   </h3>
                   <button 
@@ -304,15 +304,15 @@ export const ParentDashboard = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         padding: '0.75rem 1rem',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        backgroundColor: 'var(--border-light)',
                         borderRadius: '8px',
                         borderLeft: '3px solid #38bdf8'
                       }}>
                         <div>
-                          <div style={{ color: '#ffffff', fontWeight: '600', fontSize: '0.875rem' }}>
+                          <div style={{ color: 'var(--text-main)', fontWeight: '600', fontSize: '0.875rem' }}>
                             {asn.title}
                           </div>
-                          <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.15rem' }}>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
                             Due: {asn.dueDate || 'Open'} • Class: {asn.classId || 'Cohort'}
                           </div>
                         </div>
@@ -323,7 +323,7 @@ export const ParentDashboard = () => {
                     ))}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                     No pending homework tasks assigned to your child's cohort.
                   </div>
                 )}

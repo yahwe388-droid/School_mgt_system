@@ -99,12 +99,6 @@ export const AdminDashboard = () => {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Dashboard', icon: Activity, path: '/admin/dashboard' },
-    { id: 'users', label: 'Users & Accounts', icon: ShieldCheck, path: '/admin/users' },
-    { id: 'teachers', label: 'Teachers', icon: UserCheck, path: '/admin/teachers' },
-    { id: 'students', label: 'Students', icon: GraduationCap, path: '/admin/students' },
-    { id: 'parents', label: 'Parents/Guardians', icon: HeartHandshake, path: '/admin/parents' },
-    { id: 'school', label: 'School Settings', icon: Building, path: '/admin/settings' },
     { id: 'academic', label: 'Classes & Subjects', icon: Layers },
     { id: 'timetable', label: 'Timetable', icon: Calendar },
     { id: 'attendance', label: 'Attendance', icon: CalendarCheck },
@@ -206,9 +200,9 @@ export const AdminDashboard = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {metrics.recentCreations?.length > 0 ? (
                     metrics.recentCreations.map((acc) => (
-                      <div key={acc.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem', borderRadius: '8px', background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-color)' }}>
+                      <div key={acc.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem', borderRadius: '8px', background: 'var(--border-light)', border: '1px solid var(--border-color)' }}>
                         <div>
-                          <div style={{ fontWeight: '600', fontSize: '0.875rem', color: '#ffffff' }}>{acc.name}</div>
+                          <div style={{ fontWeight: '600', fontSize: '0.875rem', color: 'var(--text-main)' }}>{acc.name}</div>
                           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>@{acc.username} • <strong style={{ color: '#818cf8' }}>{acc.role}</strong></div>
                         </div>
                         <div style={{ textAlign: 'right', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -236,9 +230,9 @@ export const AdminDashboard = () => {
                     metrics.recentAuthLogs.map((log) => {
                       const isSuccess = log.status === 'SUCCESS';
                       return (
-                        <div key={log.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem', borderRadius: '8px', background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-color)' }}>
+                        <div key={log.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem', borderRadius: '8px', background: 'var(--border-light)', border: '1px solid var(--border-color)' }}>
                           <div>
-                            <div style={{ fontWeight: '600', fontSize: '0.875rem', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <div style={{ fontWeight: '600', fontSize: '0.875rem', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                               <span>{log.name || log.username}</span>
                               <span style={{
                                 padding: '0.1rem 0.4rem',

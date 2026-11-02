@@ -331,7 +331,7 @@ export const AdminUserManagement = () => {
               users.map((u) => {
                 const badge = getRoleBadgeStyle(u.role);
                 return (
-                  <tr key={u.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <tr key={u.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <td style={{ padding: '0.875rem 1rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <img
@@ -575,7 +575,7 @@ export const AdminUserManagement = () => {
               )}
 
               {/* Required Temporary Password Generator */}
-              <div className="form-group" style={{ marginBottom: 0, backgroundColor: 'rgba(255, 255, 255, 0.02)', padding: '0.875rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div className="form-group" style={{ marginBottom: 0, backgroundColor: 'rgba(255, 255, 255, 0.02)', padding: '0.875rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                   <label className="form-label" style={{ marginBottom: 0, display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
                     <Lock size={14} color="#6366f1" />

@@ -137,11 +137,11 @@ export const TeacherDashboard = () => {
                 <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: '#38bdf8', letterSpacing: '0.08em' }}>
                   FACULTY ACADEMIC WORKSPACE
                 </span>
-                <h1 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#ffffff', marginTop: '0.25rem' }}>
+                <h1 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--text-main)', marginTop: '0.25rem' }}>
                   Welcome back, {user?.name}
                 </h1>
-                <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.35rem' }}>
-                  Department: <strong style={{ color: '#e2e8f0' }}>{dashboardData?.teacher?.department || user?.department || 'Computer Science'}</strong> • Teaching Role Authenticated
+                <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
+                  Department: <strong style={{ color: 'var(--text-main)' }}>{dashboardData?.teacher?.department || user?.department || 'Computer Science'}</strong> • Teaching Role Authenticated
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -166,60 +166,60 @@ export const TeacherDashboard = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Assigned Classes</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Assigned Classes</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8' }}>
                     <BookOpen size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.assignedClassesCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Active cohorts under your instruction
                 </div>
               </div>
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Active Students</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Active Students</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>
                     <Users size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.totalStudentsCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Enrolled across all assigned classes
                 </div>
               </div>
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Active Assignments</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Active Assignments</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>
                     <Award size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.assignmentsCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Published tasks and assessments
                 </div>
               </div>
 
               <div className="glass-card" style={{ padding: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '0.8125rem', color: '#94a3b8', fontWeight: '500' }}>Unread Inquiries</span>
+                  <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: '500' }}>Unread Inquiries</span>
                   <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(168, 85, 247, 0.15)', color: '#c084fc' }}>
                     <MessageSquare size={18} />
                   </div>
                 </div>
-                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: '#ffffff' }}>
+                <div style={{ fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-main)' }}>
                   {metrics.unreadMessagesCount}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                   Student & parent communications
                 </div>
               </div>
@@ -230,7 +230,7 @@ export const TeacherDashboard = () => {
               {/* Teaching Schedule Preview */}
               <div className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <Calendar size={18} color="#38bdf8" /> Upcoming Faculty Schedule
                   </h3>
                   <button 
@@ -250,15 +250,15 @@ export const TeacherDashboard = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         padding: '0.75rem 1rem',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        backgroundColor: 'var(--border-light)',
                         borderRadius: '8px',
                         borderLeft: '3px solid #38bdf8'
                       }}>
                         <div>
-                          <div style={{ color: '#ffffff', fontWeight: '600', fontSize: '0.875rem' }}>
+                          <div style={{ color: 'var(--text-main)', fontWeight: '600', fontSize: '0.875rem' }}>
                             {slot.subjectName || slot.subjectCode || 'Class Session'}
                           </div>
-                          <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.15rem' }}>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
                             {slot.day} • {slot.timeSlot || '10:00 AM - 11:30 AM'}
                           </div>
                         </div>
@@ -269,7 +269,7 @@ export const TeacherDashboard = () => {
                     ))}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                     No scheduled lecture slots for today.
                   </div>
                 )}
@@ -278,7 +278,7 @@ export const TeacherDashboard = () => {
               {/* Recent Assigned Tasks */}
               <div className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <BookOpen size={18} color="#34d399" /> Current Assignments
                   </h3>
                   <button 
@@ -298,15 +298,15 @@ export const TeacherDashboard = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         padding: '0.75rem 1rem',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        backgroundColor: 'var(--border-light)',
                         borderRadius: '8px',
                         borderLeft: '3px solid #34d399'
                       }}>
                         <div>
-                          <div style={{ color: '#ffffff', fontWeight: '600', fontSize: '0.875rem' }}>
+                          <div style={{ color: 'var(--text-main)', fontWeight: '600', fontSize: '0.875rem' }}>
                             {asn.title}
                           </div>
-                          <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.15rem' }}>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
                             Due: {asn.dueDate || 'Open'} • Class: {asn.classId || 'Assigned Cohort'}
                           </div>
                         </div>
@@ -317,7 +317,7 @@ export const TeacherDashboard = () => {
                     ))}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                     No published homework assignments found.
                   </div>
                 )}

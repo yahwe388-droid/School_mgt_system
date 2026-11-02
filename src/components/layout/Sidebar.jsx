@@ -13,7 +13,8 @@ import {
   Bell, 
   Calendar,
   MessageSquare,
-  User
+  User,
+  X
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -83,27 +84,46 @@ export const Sidebar = ({ isOpen, onClose }) => {
   return (
     <aside className={`app-sidebar${isOpen ? ' sidebar-open' : ''}`}>
       {/* Brand Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0 0.5rem 2rem 0.5rem' }}>
-        <div style={{
-          width: '44px',
-          height: '44px',
-          borderRadius: '50%',
-          backgroundColor: 'rgba(255, 255, 255, 0.08)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '2px',
-          boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
-          border: '2px solid rgba(255,255,255,0.15)',
-          overflow: 'hidden',
-          flexShrink: 0
-        }}>
-          <img src="/logo.png" alt="EduCore Logo" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 0.5rem 2rem 0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{
+            width: '44px',
+            height: '44px',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(255, 255, 255, 0.08)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2px',
+            boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
+            border: '2px solid rgba(255,255,255,0.15)',
+            overflow: 'hidden',
+            flexShrink: 0
+          }}>
+            <img src="/logo.png" alt="EduCore Logo" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+          </div>
+          <div>
+            <h2 style={{ color: '#ffffff', fontSize: '1.1rem', fontWeight: '700', lineHeight: '1.2' }}>EduCore</h2>
+            <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '500' }}>Management Portal</span>
+          </div>
         </div>
-        <div>
-          <h2 style={{ color: '#ffffff', fontSize: '1.1rem', fontWeight: '700', lineHeight: '1.2' }}>EduCore</h2>
-          <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '500' }}>Management Portal</span>
-        </div>
+        <button
+          onClick={onClose}
+          className="sidebar-close-btn"
+          aria-label="Close menu"
+          style={{
+            background: 'rgba(255, 255, 255, 0.08)',
+            border: 'none',
+            color: '#94a3b8',
+            borderRadius: '6px',
+            padding: '0.35rem',
+            cursor: 'pointer',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <X size={18} />
+        </button>
       </div>
 
       {/* Role Navigation */}

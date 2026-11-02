@@ -79,7 +79,7 @@ export const ParentGradesManager = () => {
       {/* Header & Child Selector */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <Award size={24} color="#f59e0b" /> Official Academic Transcript & Report Card
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -122,7 +122,7 @@ export const ParentGradesManager = () => {
               <Award size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {avgGpa} <span style={{ fontSize: '1rem', color: '#94a3b8', fontWeight: '500' }}>/ 4.00</span>
           </div>
           <div style={{ fontSize: '0.75rem', color: '#34d399', marginTop: '0.25rem', fontWeight: '600' }}>
@@ -137,7 +137,7 @@ export const ParentGradesManager = () => {
               <TrendingUp size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {avgPercentage}%
           </div>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -152,7 +152,7 @@ export const ParentGradesManager = () => {
               <FileText size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {totalExams}
           </div>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -163,20 +163,20 @@ export const ParentGradesManager = () => {
 
       {/* Grades Table */}
       <div className="glass-card" style={{ padding: '1.5rem', overflowX: 'auto' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', marginBottom: '1.25rem' }}>
+        <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '1.25rem' }}>
           Subject Transcript {selectedChild ? `for ${selectedChild.name}` : ''}
         </h3>
 
         {grades.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
             <Award size={48} style={{ opacity: 0.3, margin: '0 auto 1rem auto' }} />
-            <div style={{ color: '#ffffff', fontWeight: '600', marginBottom: '0.25rem' }}>No Exam Results Published</div>
+            <div style={{ color: 'var(--text-main)', fontWeight: '600', marginBottom: '0.25rem' }}>No Exam Results Published</div>
             <p style={{ fontSize: '0.8125rem' }}>Official grades will be posted here as soon as teachers complete grading.</p>
           </div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.875rem' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#94a3b8' }}>
+              <tr style={{ borderBottom: '1px solid var(--border-color)', color: '#94a3b8' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Subject Code</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Assessment Title</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Marks Obtained</th>
@@ -191,17 +191,17 @@ export const ParentGradesManager = () => {
                 <tr
                   key={grade.id || idx}
                   style={{
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                    borderBottom: '1px solid var(--border-color)',
                     backgroundColor: idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.015)'
                   }}
                 >
-                  <td style={{ padding: '1rem', fontWeight: '600', color: '#ffffff' }}>
+                  <td style={{ padding: '1rem', fontWeight: '600', color: 'var(--text-main)' }}>
                     {grade.subjectCode || 'GEN-101'}
                   </td>
                   <td style={{ padding: '1rem', color: '#cbd5e1' }}>
                     {grade.examId || 'Midterm / Final'}
                   </td>
-                  <td style={{ padding: '1rem', color: '#ffffff' }}>
+                  <td style={{ padding: '1rem', color: 'var(--text-main)' }}>
                     <strong>{grade.marksObtained}</strong> / {grade.totalMarks || 100}
                   </td>
                   <td style={{ padding: '1rem', color: '#38bdf8', fontWeight: '600' }}>

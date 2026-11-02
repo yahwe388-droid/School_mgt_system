@@ -53,7 +53,7 @@ export const TeacherClassesManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <BookOpen size={24} color="#22d3ee" /> Faculty Teaching Assignments & Classes
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -83,7 +83,7 @@ export const TeacherClassesManager = () => {
       ) : filteredClasses.length === 0 ? (
         <div className="glass-card" style={{ padding: '3rem', textAlign: 'center', color: '#94a3b8' }}>
           <Layers size={40} style={{ margin: '0 auto 1rem auto', opacity: 0.5 }} />
-          <div style={{ fontWeight: '600', color: '#ffffff' }}>No Assigned Classes Found</div>
+          <div style={{ fontWeight: '600', color: 'var(--text-main)' }}>No Assigned Classes Found</div>
           <p style={{ fontSize: '0.8125rem', marginTop: '0.25rem' }}>You have not been assigned teaching cohorts for this academic period.</p>
         </div>
       ) : (
@@ -95,7 +95,7 @@ export const TeacherClassesManager = () => {
                   <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#22d3ee', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                     {cls.code || cls.id}
                   </span>
-                  <h3 style={{ fontSize: '1.1rem', color: '#ffffff', fontWeight: '700', marginTop: '0.25rem' }}>
+                  <h3 style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '700', marginTop: '0.25rem' }}>
                     {cls.title}
                   </h3>
                 </div>
@@ -154,7 +154,7 @@ export const TeacherClassesManager = () => {
               </thead>
               <tbody>
                 {selectedClass.students.map(s => (
-                  <tr key={s.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <tr key={s.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <td style={{ padding: '0.75rem 0.5rem', fontFamily: 'monospace', color: 'var(--primary)', fontWeight: '600' }}>
                       {s.studentId || s.admissionNo || s.id}
                     </td>

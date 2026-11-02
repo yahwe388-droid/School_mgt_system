@@ -85,7 +85,7 @@ export const StudentAssignmentsManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <BookOpen size={24} color="#10b981" /> Coursework & Assignment Submissions
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -95,7 +95,7 @@ export const StudentAssignmentsManager = () => {
 
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <span style={{ fontSize: '0.8125rem', color: '#94a3b8' }}>
-            Total Assignments: <strong style={{ color: '#ffffff' }}>{assignments.length}</strong>
+            Total Assignments: <strong style={{ color: 'var(--text-main)' }}>{assignments.length}</strong>
           </span>
         </div>
       </div>
@@ -106,7 +106,7 @@ export const StudentAssignmentsManager = () => {
       {assignments.length === 0 ? (
         <div className="glass-card" style={{ padding: '3rem 2rem', textAlign: 'center', color: '#94a3b8' }}>
           <BookOpen size={48} style={{ opacity: 0.3, margin: '0 auto 1rem auto' }} />
-          <h3 style={{ fontSize: '1.125rem', color: '#ffffff', marginBottom: '0.5rem' }}>No Active Assignments</h3>
+          <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>No Active Assignments</h3>
           <p style={{ fontSize: '0.875rem' }}>Your faculty instructors have not posted any pending coursework for your class.</p>
         </div>
       ) : (
@@ -133,7 +133,7 @@ export const StudentAssignmentsManager = () => {
                     <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', textTransform: 'uppercase' }}>
                       {asn.subjectCode || 'GEN-101'}
                     </span>
-                    <h3 style={{ fontSize: '1.125rem', color: '#ffffff', fontWeight: '600', marginTop: '0.2rem' }}>
+                    <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', fontWeight: '600', marginTop: '0.2rem' }}>
                       {asn.title}
                     </h3>
                   </div>
@@ -160,10 +160,10 @@ export const StudentAssignmentsManager = () => {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', color: '#94a3b8' }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                    <Calendar size={14} /> Due: <strong style={{ color: '#e2e8f0' }}>{asn.dueDate || 'Open'}</strong>
+                    <Calendar size={14} /> Due: <strong style={{ color: 'var(--text-main)' }}>{asn.dueDate || 'Open'}</strong>
                   </span>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                    <Award size={14} /> Max: <strong style={{ color: '#e2e8f0' }}>{asn.totalPoints || 100} pts</strong>
+                    <Award size={14} /> Max: <strong style={{ color: 'var(--text-main)' }}>{asn.totalPoints || 100} pts</strong>
                   </span>
                 </div>
 
@@ -182,7 +182,7 @@ export const StudentAssignmentsManager = () => {
                         {sub?.submittedAt ? new Date(sub.submittedAt).toLocaleDateString() : 'Recorded'}
                       </span>
                     </div>
-                    <div style={{ color: '#e2e8f0', wordBreak: 'break-word', fontFamily: 'monospace', fontSize: '0.75rem' }}>
+                    <div style={{ color: 'var(--text-main)', wordBreak: 'break-word', fontFamily: 'monospace', fontSize: '0.75rem' }}>
                       {sub?.content}
                     </div>
                     {isGraded && (
@@ -221,7 +221,7 @@ export const StudentAssignmentsManager = () => {
           <form onSubmit={handleSubmitHomework} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div style={{ padding: '0.75rem', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '8px', fontSize: '0.8125rem' }}>
               <div style={{ color: '#94a3b8', marginBottom: '0.25rem' }}>Assignment Instructions:</div>
-              <div style={{ color: '#ffffff' }}>{selectedAssignment.instructions || 'Submit requested assignment materials.'}</div>
+              <div style={{ color: 'var(--text-main)' }}>{selectedAssignment.instructions || 'Submit requested assignment materials.'}</div>
             </div>
 
             <div>

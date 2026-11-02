@@ -527,12 +527,36 @@ class DatabaseStore {
 
     // Sequential Student ID Allocation Mutex Queue
     this._studentIdLock = Promise.resolve();
+
+    // High-performance O(1) indexed lookups for large user scalability
+    this._buildUserIndexes();
+  }
+
+  _buildUserIndexes() {
+    this._userIdMap = new Map();
+    this._userEmailMap = new Map();
+    this._userUsernameMap = new Map();
+    if (Array.isArray(this.users)) {
+      for (const u of this.users) {
+        this._indexUser(u);
+      }
+    }
+  }
+
+  _indexUser(u) {
+    if (!u) return;
+    if (u.id) this._userIdMap.set(u.id, u);
+    if (u.email) this._userEmailMap.set(u.email.toLowerCase().trim(), u);
+    if (u.username) this._userUsernameMap.set(u.username.toLowerCase().trim(), u);
+    if (u.studentId) this._userUsernameMap.set(u.studentId.toLowerCase().trim(), u);
+    if (u.aliasUsername) this._userUsernameMap.set(u.aliasUsername.toLowerCase().trim(), u);
   }
 
   // Audit Log Methods
   logAdminAction(entry) {
     const log = { id: `LOG-${Date.now()}`, ...entry };
     this.auditLogs.unshift(log);
+    if (this.auditLogs.length > 1000) this.auditLogs.pop();
     return log;
   }
 
@@ -548,7 +572,7 @@ class DatabaseStore {
       ...entry
     };
     this.authLogs.unshift(log);
-    if (this.authLogs.length > 200) this.authLogs.pop();
+    if (this.authLogs.length > 1000) this.authLogs.pop();
     return log;
   }
 
@@ -599,26 +623,56 @@ class DatabaseStore {
 
   // Users
   getUsers() { return this.users; }
+
   findUserByEmail(email) {
     if (!email) return null;
-    return this.users.find(u => u.email && u.email.toLowerCase() === email.toLowerCase());
+    const clean = email.trim().toLowerCase();
+    if (this._userEmailMap?.has(clean)) return this._userEmailMap.get(clean);
+    const u = this.users.find(user => user.email && user.email.toLowerCase() === clean);
+    if (u) this._userEmailMap.set(clean, u);
+    return u || null;
   }
+
   findUserByUsername(username) {
     if (!username) return null;
-    return this.users.find(u => u.username && u.username.toLowerCase() === username.toLowerCase());
+    const clean = username.trim().toLowerCase();
+    if (this._userUsernameMap?.has(clean)) return this._userUsernameMap.get(clean);
+    const u = this.users.find(user => user.username && user.username.toLowerCase() === clean);
+    if (u) this._userUsernameMap.set(clean, u);
+    return u || null;
   }
+
   findUserByUsernameOrEmail(identifier) {
     if (!identifier) return null;
     const clean = identifier.trim().toLowerCase();
-    return this.users.find(u => 
+    // Fast path: O(1) indexed lookup by username / studentId / alias
+    if (this._userUsernameMap?.has(clean)) return this._userUsernameMap.get(clean);
+    if (this._userEmailMap?.has(clean)) return this._userEmailMap.get(clean);
+    if (clean === 'alex.morgan') {
+      const u = this.findUserById('USR-003');
+      if (u) return u;
+    }
+    // Fallback scan
+    const found = this.users.find(u => 
       (u.username && u.username.toLowerCase() === clean) ||
       (u.studentId && u.studentId.toLowerCase() === clean) ||
       (u.aliasUsername && u.aliasUsername.toLowerCase() === clean) ||
       (u.email && u.email.toLowerCase() === clean) ||
       (u.id === 'USR-003' && clean === 'alex.morgan')
     );
+    if (found) {
+      this._indexUser(found);
+    }
+    return found || null;
   }
-  findUserById(id) { return this.users.find(u => u.id === id); }
+
+  findUserById(id) {
+    if (!id) return null;
+    if (this._userIdMap?.has(id)) return this._userIdMap.get(id);
+    const u = this.users.find(user => user.id === id);
+    if (u) this._userIdMap.set(id, u);
+    return u || null;
+  }
 
   createUser(userData) {
     const newUser = {
@@ -634,6 +688,7 @@ class DatabaseStore {
       name: userData.name || `${userData.first_name || ''} ${userData.last_name || ''}`.trim()
     };
     this.users.push(newUser);
+    this._indexUser(newUser);
     return newUser;
   }
 
@@ -649,6 +704,7 @@ class DatabaseStore {
       name: safeUpdates.name || `${safeUpdates.first_name || this.users[idx].first_name || ''} ${safeUpdates.last_name || this.users[idx].last_name || ''}`.trim(),
       updated_at: new Date().toISOString()
     };
+    this._indexUser(this.users[idx]);
     return this.users[idx];
   }
 

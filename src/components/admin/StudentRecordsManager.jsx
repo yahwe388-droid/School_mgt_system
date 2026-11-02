@@ -284,7 +284,7 @@ export const StudentRecordsManager = () => {
       {/* Header Bar */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <GraduationCap size={24} color="#10b981" /> Student Records Directory
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -381,7 +381,7 @@ export const StudentRecordsManager = () => {
                   const isActive = (student.status || 'Active') === 'Active';
 
                   return (
-                    <tr key={student.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', transition: 'background 0.15s' }}>
+                    <tr key={student.id} style={{ borderBottom: '1px solid var(--border-color)', transition: 'background 0.15s' }}>
                       <td style={{ padding: '1rem' }}>
                         <div style={{ fontFamily: 'monospace', fontWeight: '700', color: '#22d3ee', fontSize: '0.875rem' }}>
                           {sId}
@@ -390,11 +390,11 @@ export const StudentRecordsManager = () => {
                       </td>
 
                       <td style={{ padding: '1rem' }}>
-                        <div style={{ fontWeight: '600', color: '#ffffff' }}>{student.name}</div>
+                        <div style={{ fontWeight: '600', color: 'var(--text-main)' }}>{student.name}</div>
                         <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{student.email}</div>
                       </td>
 
-                      <td style={{ padding: '1rem', color: '#e2e8f0', fontSize: '0.875rem' }}>
+                      <td style={{ padding: '1rem', color: 'var(--text-main)', fontSize: '0.875rem' }}>
                         {student.grade || 'N/A'}
                       </td>
 
@@ -565,7 +565,7 @@ export const StudentRecordsManager = () => {
           </div>
 
           {/* Required Encrypted Account Password */}
-          <div className="form-group" style={{ backgroundColor: 'rgba(255, 255, 255, 0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+          <div className="form-group" style={{ backgroundColor: 'rgba(255, 255, 255, 0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
               <label className="form-label" style={{ marginBottom: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Lock size={14} color="#10b981" />
@@ -656,7 +656,7 @@ export const StudentRecordsManager = () => {
             }}>
               <Check size={32} />
             </div>
-            <h3 style={{ fontSize: '1.2rem', color: '#ffffff', fontWeight: '700' }}>
+            <h3 style={{ fontSize: '1.2rem', color: 'var(--text-main)', fontWeight: '700' }}>
               Student Account Created Successfully
             </h3>
             <p style={{ fontSize: '0.875rem', color: '#94a3b8' }}>
@@ -667,7 +667,7 @@ export const StudentRecordsManager = () => {
           <div style={{
             backgroundColor: 'rgba(0, 0, 0, 0.3)',
             borderRadius: '10px',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            border: '1px solid var(--border-color)',
             padding: '1.25rem',
             display: 'flex',
             flexDirection: 'column',
@@ -675,7 +675,7 @@ export const StudentRecordsManager = () => {
           }}>
             <div>
               <span style={{ fontSize: '0.75rem', color: '#64748b', textTransform: 'uppercase', fontWeight: '700' }}>Student Name</span>
-              <div style={{ fontSize: '1rem', fontWeight: '600', color: '#ffffff' }}>{createdCredentials?.name}</div>
+              <div style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text-main)' }}>{createdCredentials?.name}</div>
             </div>
 
             <div>

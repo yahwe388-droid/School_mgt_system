@@ -140,7 +140,7 @@ export const UnifiedMessageCenter = ({ roleTitle = "Portal", apiBase = "/teacher
       {/* Header Bar */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <MessageSquare size={24} color="#6366f1" /> Official Communication Channel
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -216,7 +216,7 @@ export const UnifiedMessageCenter = ({ roleTitle = "Portal", apiBase = "/teacher
           ) : filteredList.length === 0 ? (
             <div className="glass-card" style={{ padding: '3rem', textAlign: 'center', color: '#94a3b8' }}>
               <MailOpen size={36} style={{ margin: '0 auto 1rem auto', opacity: 0.5 }} />
-              <div style={{ fontWeight: '600', color: '#ffffff' }}>No messages in {activeFolder}</div>
+              <div style={{ fontWeight: '600', color: 'var(--text-main)' }}>No messages in {activeFolder}</div>
               <p style={{ fontSize: '0.8125rem', marginTop: '0.25rem' }}>Your communication log is currently empty.</p>
             </div>
           ) : (

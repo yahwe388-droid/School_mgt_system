@@ -114,7 +114,7 @@ export const TeacherGradesManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <Award size={24} color="#f59e0b" /> Official Faculty Gradebook & Assessments
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -175,7 +175,7 @@ export const TeacherGradesManager = () => {
             </thead>
             <tbody>
               {gradesList.map((g) => (
-                <tr key={g.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                <tr key={g.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                   <td style={{ padding: '0.875rem 1rem', fontWeight: '600', color: '#f8fafc' }}>
                     {g.studentName}
                   </td>

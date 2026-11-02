@@ -42,7 +42,7 @@ export const ParentChildrenManager = ({ onSelectChild }) => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+        <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
           <HeartHandshake size={24} color="#f59e0b" /> Verified Children & Student Wards
         </h2>
         <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -55,7 +55,7 @@ export const ParentChildrenManager = ({ onSelectChild }) => {
       {children.length === 0 ? (
         <div className="glass-card" style={{ padding: '3rem 2rem', textAlign: 'center', color: '#94a3b8' }}>
           <GraduationCap size={48} style={{ opacity: 0.3, margin: '0 auto 1rem auto' }} />
-          <h3 style={{ fontSize: '1.125rem', color: '#ffffff', marginBottom: '0.5rem' }}>No Children Linked</h3>
+          <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>No Children Linked</h3>
           <p style={{ fontSize: '0.875rem' }}>Your guardian account has no verified student dependents linked by the administration.</p>
         </div>
       ) : (
@@ -86,9 +86,9 @@ export const ParentChildrenManager = ({ onSelectChild }) => {
                     {(child.name || 'C')[0].toUpperCase()}
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '1.125rem', color: '#ffffff', fontWeight: '700' }}>{child.name}</h3>
+                    <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', fontWeight: '700' }}>{child.name}</h3>
                     <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.2rem' }}>
-                      ID: <strong style={{ color: '#e2e8f0', fontFamily: 'monospace' }}>{child.studentId || child.admissionNo || child.id}</strong>
+                      ID: <strong style={{ color: 'var(--text-main)', fontFamily: 'monospace' }}>{child.studentId || child.admissionNo || child.id}</strong>
                     </div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export const ParentChildrenManager = ({ onSelectChild }) => {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
                   <div style={{ padding: '0.75rem', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '8px' }}>
                     <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block' }}>Enrolled Cohort</span>
-                    <strong style={{ color: '#ffffff', fontSize: '0.875rem' }}>{child.classId || 'Class 12'}</strong>
+                    <strong style={{ color: 'var(--text-main)', fontSize: '0.875rem' }}>{child.classId || 'Class 12'}</strong>
                   </div>
                   <div style={{ padding: '0.75rem', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '8px' }}>
                     <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block' }}>Attendance</span>
@@ -172,7 +172,7 @@ export const ParentChildrenManager = ({ onSelectChild }) => {
                 {(selectedChild.name || 'C')[0].toUpperCase()}
               </div>
               <div>
-                <div style={{ fontSize: '1.125rem', fontWeight: '700', color: '#ffffff' }}>{selectedChild.name}</div>
+                <div style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-main)' }}>{selectedChild.name}</div>
                 <div style={{ fontSize: '0.8125rem', color: '#fbbf24' }}>
                   Student ID: {selectedChild.studentId || selectedChild.admissionNo || selectedChild.id}
                 </div>
@@ -182,11 +182,11 @@ export const ParentChildrenManager = ({ onSelectChild }) => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.875rem' }}>
               <div style={{ backgroundColor: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '8px' }}>
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block' }}>Class Cohort</span>
-                <strong style={{ color: '#ffffff' }}>{selectedChild.classId || 'Class 12'}</strong>
+                <strong style={{ color: 'var(--text-main)' }}>{selectedChild.classId || 'Class 12'}</strong>
               </div>
               <div style={{ backgroundColor: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '8px' }}>
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block' }}>Contact Email</span>
-                <strong style={{ color: '#ffffff' }}>{selectedChild.email || 'student@educore.edu'}</strong>
+                <strong style={{ color: 'var(--text-main)' }}>{selectedChild.email || 'student@educore.edu'}</strong>
               </div>
               <div style={{ backgroundColor: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '8px' }}>
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block' }}>Attendance Standing</span>

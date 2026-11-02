@@ -683,7 +683,7 @@ export const TimetableManager = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
               <Calendar size={22} color="var(--primary)" />
-              <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#ffffff' }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--text-main)' }}>
                 Academic Class Timetable
               </h2>
               {isPublished ? (
@@ -709,7 +709,7 @@ export const TimetableManager = () => {
         {!isPublished || entries.length === 0 ? (
           <div className="glass-card" style={{ padding: '3.5rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
             <Calendar size={48} color="#64748b" />
-            <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: '#ffffff' }}>
+            <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-main)' }}>
               No Published Timetable Available
             </h3>
             <p style={{ fontSize: '0.875rem', color: '#94a3b8', maxWidth: '480px' }}>
@@ -746,7 +746,7 @@ export const TimetableManager = () => {
                   return (
                     <tr key={pObj.period}>
                       <td style={{ verticalAlign: 'top', padding: '0.75rem', backgroundColor: 'rgba(255, 255, 255, 0.02)' }}>
-                        <div style={{ fontWeight: '700', color: '#ffffff', fontSize: '0.8125rem' }}>{pObj.name}</div>
+                        <div style={{ fontWeight: '700', color: 'var(--text-main)', fontSize: '0.8125rem' }}>{pObj.name}</div>
                         <div style={{ fontSize: '0.6875rem', color: '#94a3b8', marginTop: '0.2rem' }}>{pObj.startTime} - {pObj.endTime}</div>
                       </td>
                       {schoolDays.map((day) => {
@@ -763,7 +763,7 @@ export const TimetableManager = () => {
                                 flexDirection: 'column',
                                 gap: '0.2rem'
                               }}>
-                                <span style={{ fontWeight: '700', fontSize: '0.8125rem', color: '#ffffff' }}>
+                                <span style={{ fontWeight: '700', fontSize: '0.8125rem', color: 'var(--text-main)' }}>
                                   {lesson.subjectCode}
                                 </span>
                                 <span style={{ fontSize: '0.6875rem', color: '#cbd5e1', lineHeight: '1.2' }}>
@@ -808,12 +808,12 @@ export const TimetableManager = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
               <Calendar size={22} color="#38bdf8" />
-              <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#ffffff' }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--text-main)' }}>
                 Faculty Teaching Schedule
               </h2>
             </div>
             <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.35rem' }}>
-              Instructor: <strong style={{ color: '#ffffff' }}>{teacher?.name || user?.name}</strong> | Department: {teacher?.department || 'Faculty'} | Total Lessons: {timetable.length} periods/week
+              Instructor: <strong style={{ color: 'var(--text-main)' }}>{teacher?.name || user?.name}</strong> | Department: {teacher?.department || 'Faculty'} | Total Lessons: {timetable.length} periods/week
             </p>
           </div>
 
@@ -850,7 +850,7 @@ export const TimetableManager = () => {
                 return (
                   <tr key={pObj.period}>
                     <td style={{ verticalAlign: 'top', padding: '0.75rem', backgroundColor: 'rgba(255, 255, 255, 0.02)' }}>
-                      <div style={{ fontWeight: '700', color: '#ffffff', fontSize: '0.8125rem' }}>{pObj.name}</div>
+                      <div style={{ fontWeight: '700', color: 'var(--text-main)', fontSize: '0.8125rem' }}>{pObj.name}</div>
                       <div style={{ fontSize: '0.6875rem', color: '#94a3b8', marginTop: '0.2rem' }}>{pObj.startTime} - {pObj.endTime}</div>
                     </td>
                     {schoolDays.map((day) => {
@@ -879,7 +879,7 @@ export const TimetableManager = () => {
                                 {lesson.subjectTitle || lesson.className}
                               </span>
                               <div style={{ fontSize: '0.6875rem', color: '#94a3b8', marginTop: '0.2rem' }}>
-                                Location: <strong style={{ color: '#ffffff' }}>{lesson.room}</strong>
+                                Location: <strong style={{ color: 'var(--text-main)' }}>{lesson.room}</strong>
                               </div>
                             </div>
                           ) : (
@@ -921,12 +921,12 @@ export const TimetableManager = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
               <Calendar size={22} color="#f59e0b" />
-              <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#ffffff' }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--text-main)' }}>
                 Student Class Timetable
               </h2>
             </div>
             <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.35rem' }}>
-              Student: <strong style={{ color: '#ffffff' }}>{selectedChild?.name}</strong> ({selectedChild?.admissionNo}) | Class: {selectedChild?.className} — {selectedChild?.sectionName}
+              Student: <strong style={{ color: 'var(--text-main)' }}>{selectedChild?.name}</strong> ({selectedChild?.admissionNo}) | Class: {selectedChild?.className} — {selectedChild?.sectionName}
             </p>
           </div>
 
@@ -958,7 +958,7 @@ export const TimetableManager = () => {
         {!isPublished || entries.length === 0 ? (
           <div className="glass-card" style={{ padding: '3.5rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
             <Calendar size={48} color="#64748b" />
-            <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: '#ffffff' }}>
+            <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-main)' }}>
               No Published Timetable
             </h3>
             <p style={{ fontSize: '0.875rem', color: '#94a3b8', maxWidth: '480px' }}>
@@ -994,7 +994,7 @@ export const TimetableManager = () => {
                   return (
                     <tr key={pObj.period}>
                       <td style={{ verticalAlign: 'top', padding: '0.75rem', backgroundColor: 'rgba(255, 255, 255, 0.02)' }}>
-                        <div style={{ fontWeight: '700', color: '#ffffff', fontSize: '0.8125rem' }}>{pObj.name}</div>
+                        <div style={{ fontWeight: '700', color: 'var(--text-main)', fontSize: '0.8125rem' }}>{pObj.name}</div>
                         <div style={{ fontSize: '0.6875rem', color: '#94a3b8', marginTop: '0.2rem' }}>{pObj.startTime} - {pObj.endTime}</div>
                       </td>
                       {schoolDays.map((day) => {
@@ -1011,7 +1011,7 @@ export const TimetableManager = () => {
                                 flexDirection: 'column',
                                 gap: '0.2rem'
                               }}>
-                                <span style={{ fontWeight: '700', fontSize: '0.8125rem', color: '#ffffff' }}>
+                                <span style={{ fontWeight: '700', fontSize: '0.8125rem', color: 'var(--text-main)' }}>
                                   {lesson.subjectCode}
                                 </span>
                                 <span style={{ fontSize: '0.6875rem', color: '#cbd5e1' }}>
@@ -1268,7 +1268,7 @@ export const TimetableManager = () => {
           gap: '0.5rem'
         }}>
           <div>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: '800', color: '#ffffff' }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)' }}>
               {currentClass ? currentClass.title : 'Grade'} — {currentSection ? currentSection.title : 'Section'} | Weekly Timetable | {currentYear ? currentYear.title : 'AY 2025-2026'} ({currentTerm ? currentTerm.title : 'Term'})
             </h3>
             <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
@@ -1291,7 +1291,7 @@ export const TimetableManager = () => {
             <Calendar size={48} />
           </div>
           <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#ffffff' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--text-main)' }}>
               No Timetable Created for {currentClass?.title || 'This Grade'} — {currentSection?.title || 'This Section'}
             </h3>
             <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.35rem', maxWidth: '520px' }}>
@@ -1339,7 +1339,7 @@ export const TimetableManager = () => {
                 return (
                   <tr key={pObj.period}>
                     <td style={{ verticalAlign: 'top', padding: '0.75rem', backgroundColor: 'rgba(255, 255, 255, 0.02)', borderRight: '1px solid var(--border-color)' }}>
-                      <div style={{ fontWeight: '700', color: '#ffffff', fontSize: '0.8125rem' }}>{pObj.name}</div>
+                      <div style={{ fontWeight: '700', color: 'var(--text-main)', fontSize: '0.8125rem' }}>{pObj.name}</div>
                       <div style={{ fontSize: '0.6875rem', color: '#94a3b8', marginTop: '0.2rem' }}>{pObj.startTime} - {pObj.endTime}</div>
                     </td>
 
@@ -1388,7 +1388,7 @@ export const TimetableManager = () => {
                             }}>
                               <div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                  <span style={{ fontWeight: '800', fontSize: '0.8125rem', color: '#ffffff' }}>
+                                  <span style={{ fontWeight: '800', fontSize: '0.8125rem', color: 'var(--text-main)' }}>
                                     {lesson.subjectCode}
                                   </span>
                                   {isEditing && (

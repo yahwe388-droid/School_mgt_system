@@ -55,7 +55,7 @@ export const StudentGradesManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <Award size={24} color="#10b981" /> Academic Performance & Official Gradebook
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -83,7 +83,7 @@ export const StudentGradesManager = () => {
               <Award size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {avgGpa} <span style={{ fontSize: '1rem', color: '#94a3b8', fontWeight: '500' }}>/ 4.00</span>
           </div>
           <div style={{ fontSize: '0.75rem', color: '#34d399', marginTop: '0.25rem', fontWeight: '600' }}>
@@ -98,7 +98,7 @@ export const StudentGradesManager = () => {
               <TrendingUp size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {avgPercentage}%
           </div>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -113,7 +113,7 @@ export const StudentGradesManager = () => {
               <FileText size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffffff' }}>
+          <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-main)' }}>
             {totalExams}
           </div>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -124,20 +124,20 @@ export const StudentGradesManager = () => {
 
       {/* Grades Table */}
       <div className="glass-card" style={{ padding: '1.5rem', overflowX: 'auto' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#ffffff', marginBottom: '1.25rem' }}>
+        <h3 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '1.25rem' }}>
           Transcript Course Records
         </h3>
 
         {grades.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
             <Award size={48} style={{ opacity: 0.3, margin: '0 auto 1rem auto' }} />
-            <div style={{ color: '#ffffff', fontWeight: '600', marginBottom: '0.25rem' }}>No Graded Results Recorded</div>
+            <div style={{ color: 'var(--text-main)', fontWeight: '600', marginBottom: '0.25rem' }}>No Graded Results Recorded</div>
             <p style={{ fontSize: '0.8125rem' }}>Exam and assessment scores will appear here as soon as instructors publish them.</p>
           </div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.875rem' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#94a3b8' }}>
+              <tr style={{ borderBottom: '1px solid var(--border-color)', color: '#94a3b8' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Subject Code</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Exam / Assessment</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Marks Obtained</th>
@@ -152,17 +152,17 @@ export const StudentGradesManager = () => {
                 <tr
                   key={grade.id || idx}
                   style={{
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                    borderBottom: '1px solid var(--border-color)',
                     backgroundColor: idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.015)'
                   }}
                 >
-                  <td style={{ padding: '1rem', fontWeight: '600', color: '#ffffff' }}>
+                  <td style={{ padding: '1rem', fontWeight: '600', color: 'var(--text-main)' }}>
                     {grade.subjectCode || 'GEN-101'}
                   </td>
                   <td style={{ padding: '1rem', color: '#cbd5e1' }}>
                     {grade.examId || 'Semester Assessment'}
                   </td>
-                  <td style={{ padding: '1rem', color: '#ffffff' }}>
+                  <td style={{ padding: '1rem', color: 'var(--text-main)' }}>
                     <strong>{grade.marksObtained}</strong> / {grade.totalMarks || 100}
                   </td>
                   <td style={{ padding: '1rem', color: '#38bdf8', fontWeight: '600' }}>

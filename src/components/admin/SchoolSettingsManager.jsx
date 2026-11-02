@@ -81,7 +81,7 @@ export const SchoolSettingsManager = () => {
           <Settings size={28} />
         </div>
         <div>
-          <h2 style={{ fontSize: '1.35rem', color: '#ffffff', fontWeight: '700' }}>School & System Settings</h2>
+          <h2 style={{ fontSize: '1.35rem', color: 'var(--text-main)', fontWeight: '700' }}>School & System Settings</h2>
           <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.25rem' }}>
             Configure institutional profile, academic term parameters, and automatic Student ID sequencing.
           </p>
@@ -94,7 +94,7 @@ export const SchoolSettingsManager = () => {
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         {/* Institutional Profile */}
         <div className="glass-card" style={{ padding: '1.75rem 2rem' }}>
-          <h3 style={{ fontSize: '1.05rem', color: '#ffffff', fontWeight: '600', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: '600', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Building2 size={18} color="#818cf8" /> Institutional Identity
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
@@ -163,7 +163,7 @@ export const SchoolSettingsManager = () => {
 
         {/* Student ID Generation Configuration */}
         <div className="glass-card" style={{ padding: '1.75rem 2rem' }}>
-          <h3 style={{ fontSize: '1.05rem', color: '#ffffff', fontWeight: '600', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: '600', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Hash size={18} color="#22d3ee" /> Student ID Generation Parameters
           </h3>
           <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1.25rem' }}>
@@ -212,7 +212,7 @@ export const SchoolSettingsManager = () => {
 
         {/* Academic Term Parameters */}
         <div className="glass-card" style={{ padding: '1.75rem 2rem' }}>
-          <h3 style={{ fontSize: '1.05rem', color: '#ffffff', fontWeight: '600', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: '600', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Shield size={18} color="#10b981" /> Academic Session
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>

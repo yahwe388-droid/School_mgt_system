@@ -252,7 +252,7 @@ export const ParentRecordsManager = () => {
       {/* Header Bar */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <HeartHandshake size={24} color="#f59e0b" /> Parents & Guardians Directory
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -315,13 +315,13 @@ export const ParentRecordsManager = () => {
                   const associatedStudents = students.filter(s => studentIds.includes(s.id) || studentIds.includes(s.studentId));
 
                   return (
-                    <tr key={parent.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                    <tr key={parent.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                       <td style={{ padding: '1rem' }}>
-                        <div style={{ fontWeight: '600', color: '#ffffff' }}>{parent.name}</div>
+                        <div style={{ fontWeight: '600', color: 'var(--text-main)' }}>{parent.name}</div>
                         <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{parent.address || 'Address on file'}</div>
                       </td>
 
-                      <td style={{ padding: '1rem', color: '#e2e8f0', fontSize: '0.875rem' }}>
+                      <td style={{ padding: '1rem', color: 'var(--text-main)', fontSize: '0.875rem' }}>
                         {parent.email}
                       </td>
 
@@ -470,7 +470,7 @@ export const ParentRecordsManager = () => {
           </div>
 
           {/* Required Encrypted Parent Account Password */}
-          <div className="form-group" style={{ backgroundColor: 'rgba(255, 255, 255, 0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+          <div className="form-group" style={{ backgroundColor: 'rgba(255, 255, 255, 0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
               <label className="form-label" style={{ marginBottom: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Lock size={14} color="#f59e0b" />
@@ -561,7 +561,7 @@ export const ParentRecordsManager = () => {
             }}>
               <Check size={32} />
             </div>
-            <h3 style={{ fontSize: '1.2rem', color: '#ffffff', fontWeight: '700' }}>
+            <h3 style={{ fontSize: '1.2rem', color: 'var(--text-main)', fontWeight: '700' }}>
               Parent Account Created
             </h3>
             <p style={{ fontSize: '0.875rem', color: '#94a3b8' }}>
@@ -572,7 +572,7 @@ export const ParentRecordsManager = () => {
           <div style={{
             backgroundColor: 'rgba(0, 0, 0, 0.3)',
             borderRadius: '10px',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            border: '1px solid var(--border-color)',
             padding: '1.25rem',
             display: 'flex',
             flexDirection: 'column',
@@ -580,7 +580,7 @@ export const ParentRecordsManager = () => {
           }}>
             <div>
               <span style={{ fontSize: '0.75rem', color: '#64748b', textTransform: 'uppercase', fontWeight: '700' }}>Name</span>
-              <div style={{ fontSize: '1rem', fontWeight: '600', color: '#ffffff' }}>{createdCredentials?.name}</div>
+              <div style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text-main)' }}>{createdCredentials?.name}</div>
             </div>
 
             <div>

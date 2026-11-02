@@ -120,7 +120,7 @@ export const TeacherAttendanceManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <CalendarCheck size={24} color="#10b981" /> Faculty Attendance Register
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -215,7 +215,7 @@ export const TeacherAttendanceManager = () => {
               {students.map((s) => {
                 const currentStatus = attendanceRecords[s.studentId] || 'Present';
                 return (
-                  <tr key={s.studentId} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <tr key={s.studentId} style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <td style={{ padding: '0.875rem 1rem', fontFamily: 'monospace', fontWeight: '700', color: '#38bdf8' }}>
                       {s.admissionNo || s.studentId}
                     </td>

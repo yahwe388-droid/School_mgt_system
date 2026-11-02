@@ -8,7 +8,7 @@ export const AppShell = ({ children }) => {
 
   // Close sidebar when screen becomes wide enough
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
+    const mq = window.matchMedia('(min-width: 1024px)');
     const handler = (e) => { if (e.matches) setSidebarOpen(false); };
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);

@@ -7,19 +7,46 @@ export const securityHeaders = (req, res, next) => {
   next();
 };
 
+const extractClientIp = (req) => {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.length > 0) {
+    const firstIp = forwarded.split(',')[0].trim();
+    if (firstIp) return firstIp;
+  }
+  return req.ip || req.socket?.remoteAddress || '127.0.0.1';
+};
+
 /**
- * General endpoint rate limiter with instance-isolated memory map
+ * General endpoint rate limiter with instance-isolated memory map and automatic garbage collection
  */
-export const rateLimiter = (options = { windowMs: 15 * 60 * 1000, max: 200 }) => {
+export const rateLimiter = (options = { windowMs: 15 * 60 * 1000, max: 2000 }) => {
   // Closure-isolated in-memory map for this specific limiter instance
   const instanceMap = new Map();
+
+  // Automatic periodic garbage collection of expired IP records to prevent memory leaks
+  const cleanupTimer = setInterval(() => {
+    const now = Date.now();
+    for (const [ipKey, rec] of instanceMap.entries()) {
+      if (now > rec.resetTime) {
+        instanceMap.delete(ipKey);
+      }
+    }
+  }, 2 * 60 * 1000);
+  if (cleanupTimer.unref) cleanupTimer.unref();
 
   return (req, res, next) => {
     // Never rate limit CORS preflight requests
     if (req.method === 'OPTIONS') return next();
 
-    const ip = req.ip || req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '127.0.0.1';
+    const ip = extractClientIp(req);
     const now = Date.now();
+
+    // Capacity safeguard against memory exhaustion attacks
+    if (instanceMap.size > 20000) {
+      for (const [k, v] of instanceMap.entries()) {
+        if (now > v.resetTime) instanceMap.delete(k);
+      }
+    }
 
     const record = instanceMap.get(ip) || { count: 0, resetTime: now + options.windowMs };
 
@@ -57,10 +84,21 @@ export const rateLimiter = (options = { windowMs: 15 * 60 * 1000, max: 200 }) =>
 export const authFailureRateLimiter = (options = { windowMs: 15 * 60 * 1000, maxFailures: 10 }) => {
   const failureMap = new Map();
 
+  // Periodic eviction of expired failed login tracking to conserve heap
+  const cleanupTimer = setInterval(() => {
+    const now = Date.now();
+    for (const [ipKey, rec] of failureMap.entries()) {
+      if (now > rec.resetTime) {
+        failureMap.delete(ipKey);
+      }
+    }
+  }, 2 * 60 * 1000);
+  if (cleanupTimer.unref) cleanupTimer.unref();
+
   return (req, res, next) => {
     if (req.method === 'OPTIONS') return next();
 
-    const ip = req.ip || req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '127.0.0.1';
+    const ip = extractClientIp(req);
     const now = Date.now();
 
     const record = failureMap.get(ip) || { failures: 0, resetTime: now + options.windowMs };

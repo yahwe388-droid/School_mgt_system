@@ -41,7 +41,7 @@ export const ParentAssignmentsManager = () => {
       {/* Header */}
       <div className="glass-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <h2 style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <BookOpen size={24} color="#f59e0b" /> Coursework & Homework Monitor
           </h2>
           <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginTop: '0.25rem' }}>
@@ -50,7 +50,7 @@ export const ParentAssignmentsManager = () => {
         </div>
 
         <span style={{ fontSize: '0.8125rem', color: '#94a3b8' }}>
-          Total Tasks: <strong style={{ color: '#ffffff' }}>{assignments.length}</strong>
+          Total Tasks: <strong style={{ color: 'var(--text-main)' }}>{assignments.length}</strong>
         </span>
       </div>
 
@@ -59,7 +59,7 @@ export const ParentAssignmentsManager = () => {
       {assignments.length === 0 ? (
         <div className="glass-card" style={{ padding: '3rem 2rem', textAlign: 'center', color: '#94a3b8' }}>
           <BookOpen size={48} style={{ opacity: 0.3, margin: '0 auto 1rem auto' }} />
-          <h3 style={{ fontSize: '1.125rem', color: '#ffffff', marginBottom: '0.5rem' }}>No Active Assignments</h3>
+          <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>No Active Assignments</h3>
           <p style={{ fontSize: '0.875rem' }}>Instructors have not assigned any active tasks for your child's cohort.</p>
         </div>
       ) : (
@@ -71,7 +71,7 @@ export const ParentAssignmentsManager = () => {
                   <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#f59e0b', textTransform: 'uppercase' }}>
                     {asn.subjectCode || 'GEN-101'}
                   </span>
-                  <h3 style={{ fontSize: '1.125rem', color: '#ffffff', fontWeight: '600', marginTop: '0.2rem' }}>
+                  <h3 style={{ fontSize: '1.125rem', color: 'var(--text-main)', fontWeight: '600', marginTop: '0.2rem' }}>
                     {asn.title}
                   </h3>
                 </div>
@@ -97,10 +97,10 @@ export const ParentAssignmentsManager = () => {
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', color: '#94a3b8', marginTop: 'auto', paddingTop: '0.5rem' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <Calendar size={14} /> Due Date: <strong style={{ color: '#e2e8f0' }}>{asn.dueDate || 'Open'}</strong>
+                  <Calendar size={14} /> Due Date: <strong style={{ color: 'var(--text-main)' }}>{asn.dueDate || 'Open'}</strong>
                 </span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <Award size={14} /> Total Points: <strong style={{ color: '#e2e8f0' }}>{asn.totalPoints || 100} pts</strong>
+                  <Award size={14} /> Total Points: <strong style={{ color: 'var(--text-main)' }}>{asn.totalPoints || 100} pts</strong>
                 </span>
               </div>
             </div>
